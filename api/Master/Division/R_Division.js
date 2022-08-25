@@ -23,10 +23,13 @@ module.exports = {
 			var Param = middleware.AdvSqlParamGenerator(Arr);
 			
 			db.Read(
-				`SELECT 
-					*
+				`SELECT
+					*,
+					workgroup.workgroup_name
 				FROM
 					division
+				INNER JOIN
+					workgroup ON workgroup.workgroup_id = division.workgroup_id
 				WHERE
 					1=1 ` + Param
 			).then((feedback) => {

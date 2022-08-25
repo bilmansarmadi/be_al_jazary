@@ -23,7 +23,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['cashbank_id', 'created_by', 'date_created', 'cashbank_detail', 'guarantee_id', 'project_id', 'coa_code', 'description', 'amount']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['cashbank_id', 'created_by', 'date_created', 'cashbank_detail', 'guarantee_id', 'project_id', 'coa_code', 'description', 'amount', 'daily_monthly']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -89,7 +89,7 @@ function DataValidation(Data) {
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
             'cashbank_id',
-            'period_code',
+            // 'period_code',
             'cashbank_date',
             'cashbank_type',
             'account_number',

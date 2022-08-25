@@ -24,7 +24,7 @@ module.exports = {
                     Return  : 'Boolean'
                 };
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_created', 'date_modified', 'cashbank_detail', 'guarantee_id', 'project_id', 'coa_code', 'description', 'amount']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_created', 'date_modified', 'cashbank_detail', 'guarantee_id', 'project_id', 'coa_code', 'description', 'amount', 'daily_monthly']);
 
                 let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
@@ -43,7 +43,7 @@ module.exports = {
                                 guarantee_id,
                                 project_id,
                                 cashbank_line,
-                                coa_code,
+                                -- coa_code,
                                 account_number,
                                 description,
                                 amount,
@@ -53,7 +53,7 @@ module.exports = {
                                 '`+Req_Cashbank_Detail[i].guarantee_id+`',
                                 '`+Req_Cashbank_Detail[i].project_id+`',
                                 '`+Line+`',
-                                '`+Req_Cashbank_Detail[i].coa_code+`',
+                                -- '`+Req_Cashbank_Detail[i].coa_code+`',
                                 '`+Req_Cashbank_Detail[i].account_number+`',
                                 '`+Req_Cashbank_Detail[i].description+`',
                                 '`+Req_Cashbank_Detail[i].amount+`',
@@ -102,7 +102,7 @@ function DataValidation(Data) {
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
             'cashbank_id',
-            'period_code',
+            // 'period_code',
             'cashbank_date',
             'cashbank_type',
             'account_number',

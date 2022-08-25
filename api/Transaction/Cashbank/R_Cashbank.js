@@ -78,7 +78,7 @@ module.exports = {
             ).then((feedback) => {
                 middleware.Response(res, feedback);
             });
-        } else if (Data.Route === 'DEFAULT_DETAIL') {
+        } else if (Data.Route === 'LAST_TRANSFER_DEFAULT_DETAIL') {
             var Arr = {
                 'Data': [
                     {
@@ -91,7 +91,7 @@ module.exports = {
                         'Table' : Data.TableName,
                         'Field' : 'cashbank_type',
                         'Value' : Data.tableColumn.cashbank_type.value,
-                        'Syntax': (Data.Token === 'R_LAST_TRANSFER') ? '=' : '!='
+                        'Syntax': '='
                     },
                     {
                         'Table' : Data.TableName,
@@ -127,6 +127,54 @@ module.exports = {
                     cashbank_detail ON cashbank_detail.cashbank_id = cashbank.cashbank_id
                 WHERE
                     1=1 ` + Param
+            ).then((feedback) => {
+                middleware.Response(res, feedback);
+            });
+        } else if (Data.Route === 'DEFAULT_DETAIL') {
+            var Arr = {
+                'Data': [
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'cashbank_id',
+                        'Value' : Data.tableColumn.cashbank_id.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'cashbank_type',
+                        'Value' : Data.tableColumn.cashbank_type.value,
+                        'Syntax': '!='
+                    }
+                ]
+            };
+
+            var Param = middleware.AdvSqlParamGenerator(Arr);
+
+            qry_where = (Data.tableColumn.daily_monthly.value === "D") ? `AND cashbank.cashbank_date = '`+ Data.tableColumn.cashbank_date.value +`'` : `AND CONVERT(DATE_FORMAT(cashbank.cashbank_date, '%m'), CHAR(20)) = CONVERT(DATE_FORMAT('`+ Data.tableColumn.cashbank_date.value +`', '%m'), CHAR(20))`;
+
+            db.Read(
+                `SELECT
+                    cashbank.cashbank_id,
+                    cashbank.period_code,
+                    cashbank.cashbank_desc,
+                    CONVERT(DATE_FORMAT(cashbank.cashbank_date, "%d-%m-%Y"), CHAR(20)) AS cashbank_date,
+                    cashbank.cashbank_type,
+                    cashbank.reference,
+                    cashbank.account_number,
+                    cashbank.created_by,
+                    cashbank.modified_by,
+                    cashbank.posted_by,
+                    cashbank.date_created,
+                    cashbank.date_modified,
+                    cashbank.date_posted,
+                    cashbank.status,
+                    cashbank_detail.amount
+                FROM
+                    cashbank
+                INNER JOIN
+                    cashbank_detail ON cashbank_detail.cashbank_id = cashbank.cashbank_id
+                WHERE
+                    1=1 ` + qry_where + Param
             ).then((feedback) => {
                 middleware.Response(res, feedback);
             });

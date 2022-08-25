@@ -45,7 +45,9 @@ class Cashbank {
             coa_code: {name: 'coa_code', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: '', value: null},
             description: {name: 'description', datatype: 'varchar', length: 50, isNotNull: false, defaultvalue: '', value: null},
             amount: {name: 'amount', datatype: 'decimal', length: 18.2, isNotNull: true, defaultvalue: null, value: null},
-            cashbank_detail: {name: 'cashbank_detail', datatype: 'varchar', length: 225, isNotNull: true, value: null}
+            cashbank_detail: {name: 'cashbank_detail', datatype: 'varchar', length: 225, isNotNull: true, value: null},
+
+            daily_monthly: {name: 'daily_monthly', datatype: 'varchar', length: 1, isNotNull: true, value: null}
         }
     }
 
@@ -89,6 +91,8 @@ class Cashbank {
         this.#tableColumn.tableColumn.description.value = middleware.Decrypt(value.body.description);
         this.#tableColumn.tableColumn.amount.value = middleware.Decrypt(value.body.amount);
         this.#tableColumn.tableColumn.cashbank_detail.value = middleware.Decrypt(value.body.cashbank_detail);
+
+        this.#tableColumn.tableColumn.daily_monthly.value = middleware.Decrypt(value.body.daily_monthly);
     }
 }
 
