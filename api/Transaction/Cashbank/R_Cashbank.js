@@ -90,8 +90,8 @@ module.exports = {
                     {
                         'Table' : Data.TableName,
                         'Field' : 'cashbank_type',
-                        'Value' : Data.tableColumn.cashbank_type.value,
-                        'Syntax': '='
+                        'Value' : getCashbankType(Data.tableColumn.cashbank_type.value),
+                        'Syntax': 'IN'
                     },
                     {
                         'Table' : Data.TableName,
@@ -130,7 +130,7 @@ module.exports = {
             ).then((feedback) => {
                 middleware.Response(res, feedback);
             });
-        } else if (Data.Route === 'DEFAULT_DETAIL') {
+        } else if (Data.Route === 'CASHBANK_DEFAULT_DETAIL') {
             var Arr = {
                 'Data': [
                     {
@@ -142,8 +142,8 @@ module.exports = {
                     {
                         'Table' : Data.TableName,
                         'Field' : 'cashbank_type',
-                        'Value' : Data.tableColumn.cashbank_type.value,
-                        'Syntax': '!='
+                        'Value' : getCashbankType(Data.tableColumn.cashbank_type.value),
+                        'Syntax': 'IN'
                     }
                 ]
             };
@@ -181,6 +181,18 @@ module.exports = {
         } else {
             _Data.Status = 3003;
             middleware.Response(res, _Data);
+        }
+
+        function getCashbankType(cashbank_type) {
+            let Value = null;
+
+            if (cashbank_type == 'T') {
+                Value = "'TI', 'TE'";
+            } else if (cashbank_type == 'K') {
+                Value = "'I', 'E'";
+            }
+
+            return Value;
         }
     }
 };
