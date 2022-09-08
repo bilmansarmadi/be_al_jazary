@@ -1,5 +1,5 @@
-var middleware  = require('nox');
-var db          = require('nox-db');
+var middleware 	= require('nox');
+var db 	        = require('nox-db');
 
 var _Data = {
 	Status	: 1000,
@@ -9,25 +9,25 @@ var _Data = {
 };
 
 module.exports = {
-    Update:function(res, Data) {
-        if (Data.Route === 'DEFAULT') {
-            if (DataValidation(Data)) {
-                var Arr = {
+	Update:function(res, Data) {
+		if (Data.Route === 'DEFAULT') {
+			if (DataValidation(Data)) {
+				var Arr = {
                     'Data': [{
                         'Table' : Data.TableName,
-                        'Field' : 'project_id',
-                        'Value' : Data.tableColumn.project_id.value,
+                        'Field' : 'official_id',
+                        'Value' : Data.tableColumn.official_id.value,
                         'Syntax': '='
-                    }]
-                };
+                    }]                
+                }; 
+			
+			    var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                var Param = middleware.AdvSqlParamGenerator(Arr);
-
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['project_id', 'created_by', 'date_created']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['official_id', 'created_by', 'date_created']);                
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
-
-                db.Transaction(
-                    `UPDATE `
+				
+				db.Transaction(
+                    `UPDATE ` 
                         + Data.TableName
                         + columnValueString +`
                     WHERE 
@@ -39,15 +39,15 @@ module.exports = {
                         middleware.Response(res, feedback);
                     }
                 });
-            } else {
-                _Data.Status = 3005;
+			} else {
+                _Data.Status = 3005;		
                 middleware.Response(res, _Data);
             }
-        } else {
-            _Data.Status = 3003;
+		} else {
+            _Data.Status = 3003;		
             middleware.Response(res, _Data);
         }
-    }
+	}
 };
 
 function DataValidation(Data) {
@@ -55,20 +55,11 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
-            'project_id',
-            'workgroup_id',
-            'organizational_unit_id',
-            'work_unit_id',
-            'project_code',
-            'project_name',
-            'project_date',
-            'est_date_completed',
-            'project_amount',
+            'official_id',
             'modified_by',
-            'date_modified',
-            'status'
+            'date_modified'
         ];
-
+                
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
     }
 

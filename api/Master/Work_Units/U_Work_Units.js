@@ -2,10 +2,10 @@ var middleware  = require('nox');
 var db          = require('nox-db');
 
 var _Data = {
-	Status	: 1000,
-	Data	: [],
-	Error	: '',
-	Message	: ''
+    Status  : 1000,
+    Data    : [],
+    Error   : '',
+    Message : ''
 };
 
 module.exports = {
@@ -15,19 +15,19 @@ module.exports = {
                 var Arr = {
                     'Data': [{
                         'Table' : Data.TableName,
-                        'Field' : 'project_id',
-                        'Value' : Data.tableColumn.project_id.value,
+                        'Field' : 'work_unit_id',
+                        'Value' : Data.tableColumn.work_unit_id.value,
                         'Syntax': '='
                     }]
                 };
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['project_id', 'created_by', 'date_created']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['work_unit_id', 'created_by', 'date_created']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
-                    `UPDATE `
+                    `UPDATE ` 
                         + Data.TableName
                         + columnValueString +`
                     WHERE 
@@ -55,18 +55,9 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
-            'project_id',
-            'workgroup_id',
-            'organizational_unit_id',
             'work_unit_id',
-            'project_code',
-            'project_name',
-            'project_date',
-            'est_date_completed',
-            'project_amount',
             'modified_by',
-            'date_modified',
-            'status'
+            'date_modified'
         ];
 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);

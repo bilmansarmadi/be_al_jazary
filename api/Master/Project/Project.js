@@ -28,6 +28,8 @@ class Project {
 			project_id: {name: 'project_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
 			workgroup_id: {name: 'workgroup_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
 			division_id: {name: 'division_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
+			organizational_unit_id: {name: 'organizational_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+			work_unit_id: {name: 'work_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
 			project_code: {name: 'project_code', datatype: 'varchar', length: 50, isNotNull: true, defaultvalue: null, value: null},
 			project_name: {name: 'project_name', datatype: 'varchar', length: 255, isNotNull: true, defaultvalue: '', value: null},
 			project_desc: {name: 'project_desc', datatype: 'varchar', length: 255, isNotNull: false, defaultvalue: '', value: null},
@@ -65,6 +67,8 @@ class Project {
 		this.#tableColumn.tableColumn.project_id.value = middleware.Decrypt(value.body.project_id);
 		this.#tableColumn.tableColumn.workgroup_id.value = middleware.Decrypt(value.body.workgroup_id);
 		this.#tableColumn.tableColumn.division_id.value = middleware.Decrypt(value.body.division_id);
+		this.#tableColumn.tableColumn.organizational_unit_id.value = middleware.Decrypt(value.body.organizational_unit_id);
+		this.#tableColumn.tableColumn.work_unit_id.value = middleware.Decrypt(value.body.work_unit_id);
 		this.#tableColumn.tableColumn.project_code.value = middleware.Decrypt(value.body.project_code);
 		this.#tableColumn.tableColumn.project_name.value = middleware.Decrypt(value.body.project_name);
 		this.#tableColumn.tableColumn.project_desc.value = middleware.Decrypt(value.body.project_desc);

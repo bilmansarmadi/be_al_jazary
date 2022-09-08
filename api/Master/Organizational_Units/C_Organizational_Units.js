@@ -3,29 +3,29 @@ var db          = require('nox-db');
 var ID          = require('nox-gen-id');
 
 var _Data = {
-	Status	: 1000,
-	Data	: [],
-	Error	: '',
-	Message	: ''
+    Status  : 1000,
+    Data    : [],
+    Error   : '',
+    Message : ''
 };
 
 module.exports = {
     Create:function(res, Data) {
         if (Data.Route === 'DEFAULT') {
-            Data.tableColumn.project_id.value = ID.Read_Id(Data.TableName);
+            Data.tableColumn.organizational_unit_id.value = ID.Read_Id(Data.TableName);
 
             if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : Data.TableName,
-                    Field   : 'project_id',
-                    Clause  : "project_id = '"+ Data.tableColumn.project_id.value +"'",
+                    Field   : 'organizational_unit_id',
+                    Clause  : "organizational_unit_id = '"+ Data.tableColumn.organizational_unit_id.value +"'",
                     Return  : 'Boolean'
                 };
 
-                Data.tableColumn        = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_created', 'date_modified']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_modified', 'date_created']);
 
-                let columnNameString    = middleware.PrepareInsertQuery(Data.tableColumn, false);
-                let columnValueString   = middleware.PrepareInsertQuery(Data.tableColumn, true);
+                let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
+                let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
 
                 db.Validation(
                     ValidationArr
@@ -70,16 +70,8 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
-            'project_id',
-            'workgroup_id',
             'organizational_unit_id',
-            'work_unit_id',
-            'project_code',
-            'project_name',
-            'project_date',
-            'est_date_completed',
-            'project_amount',
-            'created_by',
+            'organizational_unit_name',
             'status'
         ];
 

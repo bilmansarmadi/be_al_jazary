@@ -2,10 +2,10 @@ var middleware  = require('nox');
 var db          = require('nox-db');
 
 var _Data = {
-	Status	: 1000,
-	Data	: [],
-	Error	: '',
-	Message	: ''
+    Status  : 1000,
+    Data    : [],
+    Error   : '',
+    Message : ''
 };
 
 module.exports = {
@@ -15,28 +15,28 @@ module.exports = {
                 var Arr = {
                     'Data': [{
                         'Table' : Data.TableName,
-                        'Field' : 'project_id',
-                        'Value' : Data.tableColumn.project_id.value,
+                        'Field' : 'cheque_number',
+                        'Value' : Data.tableColumn.cheque_number_old.value,
                         'Syntax': '='
                     }]
                 };
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['project_id', 'created_by', 'date_created']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['cheque_number_old', 'created_by', 'date_created']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
-                    `UPDATE `
+                    `UPDATE ` 
                         + Data.TableName
                         + columnValueString +`
                     WHERE 
 						1=1 ` + Param
-                ).then((feedback) => {
-                    if (feedback.Status === 1000) {
-                        middleware.Response(res, feedback);
+                ).then((feedbank) => {
+                    if (feedbank.Status === 1000) {
+                        middleware.Response(res, feedbank);
                     } else {
-                        middleware.Response(res, feedback);
+                        middleware.Response(res, feedbank);
                     }
                 });
             } else {
@@ -55,15 +55,11 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
-            'project_id',
-            'workgroup_id',
-            'organizational_unit_id',
-            'work_unit_id',
-            'project_code',
-            'project_name',
-            'project_date',
-            'est_date_completed',
-            'project_amount',
+            'cheque_number',
+            'bank_code',
+            'account_number',
+            'date',
+            'amount',
             'modified_by',
             'date_modified',
             'status'

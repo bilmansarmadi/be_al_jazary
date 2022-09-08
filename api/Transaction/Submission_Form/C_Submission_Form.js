@@ -3,26 +3,26 @@ var db          = require('nox-db');
 var ID          = require('nox-gen-id');
 
 var _Data = {
-	Status	: 1000,
-	Data	: [],
-	Error	: '',
-	Message	: ''
+    Status  : 1000,
+    Data    : [],
+    Error   : '',
+    Message : ''
 };
 
 module.exports = {
     Create:function(res, Data) {
         if (Data.Route === 'DEFAULT') {
-            Data.tableColumn.cashbank_id.value = ID.Read_Id(Data.TableName);
+            // Data.tableColumn.submission_number.value = ID.Read_Id(Data.TableName);
 
             if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : Data.TableName,
-                    Field   : `CONCAT(cashbank_type, '-', workgroup_id, '-', DATE_FORMAT(cashbank_date, '%y'), DATE_FORMAT(cashbank_date, '%m'), '-', LPAD(COUNT(no_voucher)+1, 4, '0')) AS ID`,
-                    Clause  : "cashbank_date = '"+Data.tableColumn.cashbank_date.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND cashbank_type = '"+Data.tableColumn.cashbank_type.value+"' GROUP BY cashbank_date, workgroup_id, cashbank_type",
+                    Field   : `CONCAT('OPS', '-', workgroup_id, '-', DATE_FORMAT(submission_date, '%y'), DATE_FORMAT(submission_date, '%m'), '-', LPAD(COUNT(submission_number)+1, 4, '0')) AS ID`,
+                    Clause  : "submission_date = '"+Data.tableColumn.submission_date.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND submission_date = '"+Data.tableColumn.submission_date.value+"' GROUP BY submission_date, workgroup_id",
                     Return  : 'Data'
                 };
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_created', 'date_modified', 'guarantee_id', 'post_status', 'daily_monthly']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['approval_by', 'modified_by', 'date_approval', 'date_created', 'date_modified', 'approval_status', 'allocation_status']);
 
                 let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
@@ -31,20 +31,19 @@ module.exports = {
                     ValidationArr
                 ).then((feedback) => {
                     if (feedback.length !== 0) {
-                        Data.tableColumn.no_voucher.value = feedback[0].ID;
+                        Data.tableColumn.submission_number.value = feedback[0].ID;
                     } else {
-                        var date = Data.tableColumn.cashbank_date.value;
+                        var date = Data.tableColumn.submission_date.value;
                         date = date.split('-');
 
-                        // var DD = date[2];
                         var MM = date[1];
-                        var YY = date[0].slice(-2);
+                        var YY = date[2].slice(-2);
 
                         var format = YY + MM + '-';
 
-                        Data.tableColumn.no_voucher.value = Data.tableColumn.cashbank_type.value + `-` + Data.tableColumn.workgroup_id.value + `-` + format + `0001`;
+                        Data.tableColumn.submission_number.value = `OPS` + `-` + Data.tableColumn.workgroup_id.value + `-` + format + `0001`;
                     }
-                    
+
                     columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
 
                     return db.Transaction(
@@ -61,7 +60,7 @@ module.exports = {
                     );
                 }).then((feedback) => {
                     if (feedback !== false) {
-                        ID.Write_Id(Data.TableName);
+                        // ID.Write_Id(Data.TableName);
                         middleware.Response(res, feedback);
                     } else {
                         _Data.Status = 3006;
@@ -84,16 +83,13 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
-            'cashbank_id',
-            // 'no_voucher',
+            // 'submission_number',
             'workgroup_id',
+            'organizational_unit_id',
+            'work_unit_id',
             'project_id',
-            // 'period_code',
-            'cashbank_date',
-            'cashbank_type',
-            'transaction_type',
+            'submission_date',
             'amount',
-            'created_by',
             'status'
         ];
 

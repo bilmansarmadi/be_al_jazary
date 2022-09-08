@@ -9,7 +9,7 @@ var _Data = {
 };
 
 module.exports = {
-	Read:function(res, Data ) {
+	Read:function(res, Data) {
 		if (Data.Route === 'DEFAULT') {
 			var Arr = {
 				'Data': [{

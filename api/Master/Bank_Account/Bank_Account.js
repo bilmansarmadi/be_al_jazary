@@ -91,7 +91,7 @@ router.post('/', function(req, res) {
 	
 	if (middleware.TokenValidate(Identity.Token)) {
 		if (Identity.Trigger === 'C' && middleware.Permission(Identity)) {
-			create.Create(res, BankAccountData)
+			create.Create(res, BankAccountData);
 		} else if (Identity.Trigger === 'R' && middleware.Permission(Identity)) {
 			read.Read(res, BankAccountData);
 		} else if (Identity.Trigger === 'U' && middleware.Permission(Identity)) {

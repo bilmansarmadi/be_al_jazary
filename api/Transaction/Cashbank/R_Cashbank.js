@@ -24,6 +24,12 @@ module.exports = {
                         'Field' : 'cashbank_type',
                         'Value' : Data.tableColumn.cashbank_type.value,
                         'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'cashbank_permission',
+                        'Value' : Data.tableColumn.cashbank_permission.value,
+                        'Syntax': '='
                     }
                 ]
             };
@@ -33,21 +39,35 @@ module.exports = {
             db.Read(
                 `SELECT
                     cashbank.cashbank_id,
+                    cashbank.no_voucher,
+                    cashbank.workgroup_id,
+                    cashbank.project_id,
+                    cashbank.guarantee_id,
                     cashbank.period_code,
                     cashbank.cashbank_desc,
                     CONVERT(DATE_FORMAT(cashbank.cashbank_date, "%d-%m-%Y"), CHAR(20)) AS cashbank_date,
                     cashbank.cashbank_type,
+                    cashbank.cashbank_permission,
+                    cashbank.transaction_type,
                     cashbank.reference,
                     cashbank.account_number,
+                    cashbank.amount,
                     cashbank.created_by,
                     cashbank.modified_by,
                     cashbank.posted_by,
                     cashbank.date_created,
                     cashbank.date_modified,
                     cashbank.date_posted,
-                    cashbank.status
+                    cashbank.post_status,
+                    cashbank.status,
+                    workgroup.workgroup_name,
+                    project.project_name
                 FROM
                     cashbank
+                INNER JOIN
+                    workgroup ON workgroup.workgroup_id = cashbank.workgroup_id
+                INNER JOIN
+                    project ON project.project_id = cashbank.project_id
                 WHERE
                     1=1 ` + Param
             ).then((feedback) => {
@@ -112,6 +132,7 @@ module.exports = {
                     CONVERT(DATE_FORMAT(cashbank.cashbank_date, "%d-%m-%Y"), CHAR(20)) AS cashbank_date,
                     cashbank.cashbank_type,
                     cashbank.reference,
+                    cashbank.no_voucher,
                     cashbank.account_number,
                     cashbank.created_by,
                     cashbank.modified_by,
@@ -119,6 +140,7 @@ module.exports = {
                     cashbank.date_created,
                     cashbank.date_modified,
                     cashbank.date_posted,
+                    cashbank.post_status,
                     cashbank.status,
                     cashbank_detail.amount
                 FROM
@@ -160,6 +182,7 @@ module.exports = {
                     CONVERT(DATE_FORMAT(cashbank.cashbank_date, "%d-%m-%Y"), CHAR(20)) AS cashbank_date,
                     cashbank.cashbank_type,
                     cashbank.reference,
+                    cashbank.no_voucher,
                     cashbank.account_number,
                     cashbank.created_by,
                     cashbank.modified_by,
@@ -167,6 +190,7 @@ module.exports = {
                     cashbank.date_created,
                     cashbank.date_modified,
                     cashbank.date_posted,
+                    cashbank.post_status,
                     cashbank.status,
                     cashbank_detail.amount
                 FROM
