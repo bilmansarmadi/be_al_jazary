@@ -32,13 +32,19 @@ class Submission_Form {
             project_id: {name: 'project_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             submission_date: {name: 'submission_date', datatype: 'datetime', length: 0, isNotNull: true, defaultvalue: null, value: null},
             submission_desc: {name: 'submission_desc', datatype: 'varchar', length: 100, isNotNull: false, defaultvalue: null, value: null},
+            submission_type: {name: 'submission_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
+            submission_permission: {name: 'submission_permission', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
+            transaction_type: {name: 'transaction_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             amount: {name: 'amount', datatype: 'decimal', length: 50.0, isNotNull: true, defaultvalue: null, value: null},
+            checking_by: {name: 'checking_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
             approval_by: {name: 'approval_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
             created_by: {name: 'created_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
             modified_by: {name: 'modified_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
+            date_checking: {name: 'date_checking', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
             date_approval: {name: 'date_approval', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
             date_created: {name: 'date_created', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
             date_modified: {name:'date_modified', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
+            checking_status: {name: 'checking_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             approval_status: {name: 'approval_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             allocation_status: {name: 'allocation_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             status: {name: 'status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 1, value: null}
@@ -71,13 +77,19 @@ class Submission_Form {
         this.#tableColumn.tableColumn.project_id.value = middleware.Decrypt(value.body.project_id);
         this.#tableColumn.tableColumn.submission_date.value = middleware.Decrypt(value.body.submission_date);
         this.#tableColumn.tableColumn.submission_desc.value = middleware.Decrypt(value.body.submission_desc);
+        this.#tableColumn.tableColumn.submission_type.value = middleware.Decrypt(value.body.submission_type);
+        this.#tableColumn.tableColumn.submission_permission.value = middleware.Decrypt(value.body.submission_permission);
+        this.#tableColumn.tableColumn.transaction_type.value = middleware.Decrypt(value.body.transaction_type);
         this.#tableColumn.tableColumn.amount.value = middleware.Decrypt(value.body.amount);
+        this.#tableColumn.tableColumn.checking_by.value = middleware.Decrypt(value.body.checking_by);
         this.#tableColumn.tableColumn.approval_by.value = middleware.Decrypt(value.body.approval_by);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);
         this.#tableColumn.tableColumn.modified_by.value = middleware.Decrypt(value.body.modified_by);
+        this.#tableColumn.tableColumn.date_checking.value = middleware.Decrypt(value.body.date_checking);
         this.#tableColumn.tableColumn.date_approval.value = middleware.Decrypt(value.body.date_approval);
         this.#tableColumn.tableColumn.date_created.value = middleware.Decrypt(value.body.date_created);
         this.#tableColumn.tableColumn.date_modified.value = middleware.Decrypt(value.body.date_modified);
+        this.#tableColumn.tableColumn.checking_status.value = middleware.Decrypt(value.body.checking_status);
         this.#tableColumn.tableColumn.approval_status.value = middleware.Decrypt(value.body.approval_status);
         this.#tableColumn.tableColumn.allocation_status.value = middleware.Decrypt(value.body.allocation_status);
         this.#tableColumn.tableColumn.status.value = middleware.Decrypt(value.body.status);

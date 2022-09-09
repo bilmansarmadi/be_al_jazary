@@ -30,6 +30,12 @@ module.exports = {
                         'Field' : 'cashbank_permission',
                         'Value' : Data.tableColumn.cashbank_permission.value,
                         'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'transaction_type',
+                        'Value' : Data.tableColumn.transaction_type.value,
+                        'Syntax': '='
                     }
                 ]
             };

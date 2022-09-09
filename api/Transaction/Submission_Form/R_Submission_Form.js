@@ -18,6 +18,24 @@ module.exports = {
                         'Field' : 'submission_number',
                         'Value' : Data.tableColumn.submission_number.value,
                         'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'submission_type',
+                        'Value' : Data.tableColumn.submission_type.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'submission_permission',
+                        'Value' : Data.tableColumn.submission_permission.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'transaction_type',
+                        'Value' : Data.tableColumn.transaction_type.value,
+                        'Syntax': '='
                     }
                 ]
             };
@@ -33,13 +51,19 @@ module.exports = {
                     submission_form.project_id,
                     CONVERT(DATE_FORMAT(submission_form.submission_date, "%d-%m-%Y"), CHAR(20)) AS submission_date,
                     submission_form.submission_desc,
+                    submission_form.submission_type,
+                    submission_form.submission_permission,
+                    submission_form.transaction_type,
                     submission_form.amount,
+                    submission_form.checking_by,
                     submission_form.approval_by,
                     submission_form.created_by,
                     submission_form.modified_by,
+                    submission_form.date_checking,
                     submission_form.date_approval,
                     submission_form.date_created,
                     submission_form.date_modified,
+                    submission_form.checking_status,
                     submission_form.approval_status,
                     submission_form.allocation_status,
                     submission_form.status,

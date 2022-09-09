@@ -22,7 +22,7 @@ module.exports = {
                     Return  : 'Data'
                 };
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['approval_by', 'modified_by', 'date_approval', 'date_created', 'date_modified', 'approval_status', 'allocation_status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['checking_by', 'approval_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'checking_status', 'approval_status', 'allocation_status']);
 
                 let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
@@ -89,6 +89,7 @@ function DataValidation(Data) {
             'work_unit_id',
             'project_id',
             'submission_date',
+            'submission_permission',
             'amount',
             'status'
         ];

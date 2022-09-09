@@ -91,7 +91,6 @@ function DataValidation(Data) {
             // 'period_code',
             'cashbank_date',
             'cashbank_type',
-            'transaction_type',
             'amount',
             'created_by',
             'status'
