@@ -55,18 +55,9 @@ module.exports = {
 			
 			db.Read(
 				`SELECT 
-					*,
-					bank.bank_name,
-					currency.currency_name,
-					workgroup.workgroup_name
+					*
 				FROM
 					bank_account
-				INNER JOIN
-					bank ON bank.bank_code = bank_account.bank_code
-				INNER JOIN
-					currency ON currency.currency_id = bank_account.currency_id
-				INNER JOIN
-					workgroup ON workgroup.workgroup_id = bank_account.workgroup_id
 				WHERE
 					1=1 ` + Param
 			).then((feedback) => {

@@ -49,12 +49,9 @@ module.exports = {
 
             db.Read(
                 `SELECT
-					*,
-                    organizational_units.organizational_unit_name
+					*
 				FROM
 					work_units
-                INNER JOIN
-                    organizational_units ON organizational_units.organizational_unit_id = work_units.organizational_unit_id
 				WHERE
 					1=1 ` + Param
             ).then((feedback) => {

@@ -42,6 +42,28 @@ module.exports = {
             ).then((feedbank) => {
                 middleware.Response(res, feedbank);
             });
+        } else if (Data.Route === 'COMBOBOX') {
+            var Arr = {
+                'Data': [{
+                    'Table' : Data.TableName,
+                    'Field' : 'cheque_number',
+                    'Value' : Data.tableColumn.cheque_number.value,
+                    'Syntax': '='
+                }]
+            };
+
+            var Param = middleware.AdvSqlParamGenerator(Arr);
+
+            db.Read(
+                `SELECT
+                    *
+				FROM
+					cheque
+				WHERE
+					1=1 ` + Param
+            ).then((feedbank) => {
+                middleware.Response(res, feedbank);
+            });
         } else {
             _Data.Status = 3003;
             middleware.Response(res, _Data);

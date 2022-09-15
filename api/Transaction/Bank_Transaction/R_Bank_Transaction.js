@@ -1,0 +1,96 @@
+var middleware  = require('nox');
+var db          = require('nox-db');
+var Setup       = require('nox-config');
+
+var _Data = {
+    Status  : 1000,
+    Data    : [],
+    Error   : '',
+    Message : ''
+};
+
+module.exports = {
+    Read:function(res, Data) {
+        if (Data.Route === 'DEFAULT') {
+            var Config = Setup.Load_Config();
+            var Url_Img = Config.Url_Img + '/bank-transaction/';
+
+            var Arr = {
+                'Data': [
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'bank_transaction_id',
+                        'Value' : Data.tableColumn.bank_transaction_id.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'bank_transaction_permission',
+                        'Value' : Data.tableColumn.bank_transaction_permission.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'transaction_type',
+                        'Value' : Data.tableColumn.transaction_type.value,
+                        'Syntax': '='
+                    }
+                ]
+            };
+
+            var Param = middleware.AdvSqlParamGenerator(Arr);
+
+            db.Read(
+                `SELECT
+                    bank_transaction.bank_transaction_id,
+                    bank_transaction.no_voucher,
+                    bank_transaction.workgroup_id,
+                    bank_transaction.project_id,
+                    bank_transaction.guarantee_id,
+                    bank_transaction.bank_code,
+                    bank_transaction.account_number,
+                    bank_transaction.cheque_number,
+                    bank_transaction.bank_transaction_desc,
+                    CONVERT(DATE_FORMAT(bank_transaction.bank_transaction_date, "%d-%m-%Y"), CHAR(20)) AS bank_transaction_date,
+                    bank_transaction.bank_transaction_type,
+                    bank_transaction.bank_transaction_permission,
+                    bank_transaction.transaction_type,
+                    bank_transaction.amount,
+                    CASE 
+                        WHEN bank_transaction.path_image != '' THEN
+                            CONCAT('`+ Url_Img +`', bank_transaction.path_image) 
+                        ELSE ''
+                    END AS path_image,
+                    bank_transaction.approval_by,
+                    bank_transaction.created_by,
+                    bank_transaction.modified_by,
+                    bank_transaction.posted_by,
+                    bank_transaction.date_approval,
+                    bank_transaction.date_created,
+                    bank_transaction.date_modified,
+                    bank_transaction.date_posted,
+                    bank_transaction.approval_status,
+                    bank_transaction.post_status,
+                    bank_transaction.status,
+                    workgroup.workgroup_name,
+                    project.project_name,
+                    bank.bank_name
+                FROM
+                    bank_transaction
+                INNER JOIN
+                    workgroup ON workgroup.workgroup_id = bank_transaction.workgroup_id
+                INNER JOIN
+                    project ON project.project_id = bank_transaction.project_id
+                INNER JOIN
+                    bank ON bank.bank_code = bank_transaction.bank_code
+                WHERE
+                    1=1 ` + Param
+            ).then((feedback) => {
+                middleware.Response(res, feedback);
+            });
+        } else {
+            _Data.Status = 3003;
+            middleware.Response(res, _Data);
+        }
+    }
+}
