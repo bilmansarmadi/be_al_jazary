@@ -23,7 +23,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'created_by', 'date_created']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'checking_by', 'approval_by', 'created_by', 'date_checking', 'date_approval', 'date_created', 'checking_status', 'approval_status', 'allocation_status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -56,7 +56,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'submission_date', 'submission_desc', 'submission_type', 'submission_permission', 'transaction_type', 'amount', 'approval_by', 'created_by', 'modified_by', 'date_approval', 'date_created', 'date_modified', 'approval_status', 'allocation_status', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'transaction_type', 'amount', 'approval_by', 'created_by', 'modified_by', 'date_approval', 'date_created', 'date_modified', 'approval_status', 'allocation_status', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -89,7 +89,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'submission_date', 'submission_desc', 'submission_type', 'submission_permission', 'transaction_type', 'amount', 'checking_by', 'created_by', 'modified_by', 'date_checking', 'date_created', 'date_modified', 'checking_status', 'allocation_status', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'transaction_type', 'amount', 'checking_by', 'created_by', 'modified_by', 'date_checking', 'date_created', 'date_modified', 'checking_status', 'allocation_status', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -122,7 +122,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'submission_date', 'submission_desc', 'submission_type', 'submission_permission', 'transaction_type', 'amount', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'checking_status', 'approval_status', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'transaction_type', 'amount', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'checking_status', 'approval_status', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -156,10 +156,8 @@ function DataValidation(Data) {
         var ColumnArr = [
             'submission_number',
             'workgroup_id',
-            'organizational_unit_id',
-            'work_unit_id',
             'project_id',
-            'submission_date',
+            'date_submission',
             'amount',
             'modified_by',
             'date_modified',

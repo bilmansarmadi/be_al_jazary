@@ -30,7 +30,6 @@ class Submission_Form {
             organizational_unit_id: {name: 'organizational_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             work_unit_id: {name: 'work_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             project_id: {name: 'project_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
-            submission_date: {name: 'submission_date', datatype: 'datetime', length: 0, isNotNull: true, defaultvalue: null, value: null},
             submission_desc: {name: 'submission_desc', datatype: 'varchar', length: 100, isNotNull: false, defaultvalue: null, value: null},
             submission_type: {name: 'submission_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             submission_permission: {name: 'submission_permission', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
@@ -40,6 +39,7 @@ class Submission_Form {
             approval_by: {name: 'approval_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
             created_by: {name: 'created_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
             modified_by: {name: 'modified_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
+            date_submission: {name: 'date_submission', datatype: 'datetime', length: 0, isNotNull: true, defaultvalue: null, value: null},
             date_checking: {name: 'date_checking', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
             date_approval: {name: 'date_approval', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
             date_created: {name: 'date_created', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
@@ -75,7 +75,6 @@ class Submission_Form {
         this.#tableColumn.tableColumn.organizational_unit_id.value = middleware.Decrypt(value.body.organizational_unit_id);
         this.#tableColumn.tableColumn.work_unit_id.value = middleware.Decrypt(value.body.work_unit_id);
         this.#tableColumn.tableColumn.project_id.value = middleware.Decrypt(value.body.project_id);
-        this.#tableColumn.tableColumn.submission_date.value = middleware.Decrypt(value.body.submission_date);
         this.#tableColumn.tableColumn.submission_desc.value = middleware.Decrypt(value.body.submission_desc);
         this.#tableColumn.tableColumn.submission_type.value = middleware.Decrypt(value.body.submission_type);
         this.#tableColumn.tableColumn.submission_permission.value = middleware.Decrypt(value.body.submission_permission);
@@ -85,6 +84,7 @@ class Submission_Form {
         this.#tableColumn.tableColumn.approval_by.value = middleware.Decrypt(value.body.approval_by);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);
         this.#tableColumn.tableColumn.modified_by.value = middleware.Decrypt(value.body.modified_by);
+        this.#tableColumn.tableColumn.date_submission.value = middleware.Decrypt(value.body.date_submission);
         this.#tableColumn.tableColumn.date_checking.value = middleware.Decrypt(value.body.date_checking);
         this.#tableColumn.tableColumn.date_approval.value = middleware.Decrypt(value.body.date_approval);
         this.#tableColumn.tableColumn.date_created.value = middleware.Decrypt(value.body.date_created);

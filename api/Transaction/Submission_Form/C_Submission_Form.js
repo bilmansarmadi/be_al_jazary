@@ -17,8 +17,8 @@ module.exports = {
             if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : Data.TableName,
-                    Field   : `CONCAT('OPS', '-', workgroup_id, '-', DATE_FORMAT(submission_date, '%y'), DATE_FORMAT(submission_date, '%m'), '-', LPAD(COUNT(submission_number)+1, 4, '0')) AS ID`,
-                    Clause  : "submission_date = '"+Data.tableColumn.submission_date.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND submission_date = '"+Data.tableColumn.submission_date.value+"' GROUP BY submission_date, workgroup_id",
+                    Field   : `CONCAT('OPS', '-', workgroup_id, '-', DATE_FORMAT(date_submission, '%y'), DATE_FORMAT(date_submission, '%m'), '-', LPAD(COUNT(submission_number)+1, 4, '0')) AS ID`,
+                    Clause  : "date_submission = '"+Data.tableColumn.date_submission.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND date_submission = '"+Data.tableColumn.date_submission.value+"' GROUP BY date_submission, workgroup_id",
                     Return  : 'Data'
                 };
 
@@ -33,7 +33,7 @@ module.exports = {
                     if (feedback.length !== 0) {
                         Data.tableColumn.submission_number.value = feedback[0].ID;
                     } else {
-                        var date = Data.tableColumn.submission_date.value;
+                        var date = Data.tableColumn.date_submission.value;
                         date = date.split('-');
 
                         var MM = date[1];
@@ -85,10 +85,10 @@ function DataValidation(Data) {
         var ColumnArr = [
             // 'submission_number',
             'workgroup_id',
-            'organizational_unit_id',
-            'work_unit_id',
+            // 'organizational_unit_id',
+            // 'work_unit_id',
             'project_id',
-            'submission_date',
+            'date_submission',
             'submission_permission',
             'amount',
             'status'
