@@ -52,11 +52,15 @@ class Bank_Transaction {
             bank_code: {name: 'bank_code', datatype: 'varchar', length: 10, isNotNull: false, defaultvalue: null, value: null},
             account_number: {name: 'account_number', datatype: 'varchar', length: 50, isNotNull: true, defaultvalue: null, value: null},
             cheque_number: {name: 'cheque_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
+            tax_invoice_number: {name: 'tax_invoice_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
+            invoice_number: {name: 'invoice_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
+            street_mail_number: {name: 'street_mail_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             bank_transaction_desc: {name: 'bank_transaction_desc', datatype: 'varchar', length: 255,isNotNull: false, defaultvalue: '', value: null},
             bank_transaction_date: {name: 'bank_transaction_date', datatype: 'datetime', length: 0, isNotNull: true, defaultvalue: 'CURRENT_TIMESTAMP', value: null},
             bank_transaction_permission: {name: 'bank_transaction_permission', datatype: 'varchar', length: 5, isNotNull: true, defaultvalue: '', value: null},
             bank_transaction_type: {name: 'bank_transaction_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             transaction_type: {name: 'transaction_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
+            payment_accepted: {name: 'payment_accepted', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             amount: {name: 'amount', datatype: 'decimal', length: 18.2, isNotNull: true, defaultvalue: null, value: null},
 			path_image: {name: 'path_image', datatype: 'varchar', length: 1000, isNotNull: true, defaultvalue: '', value: null},
             approval_by: {name: 'approval_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
@@ -67,6 +71,9 @@ class Bank_Transaction {
             date_created: {name: 'date_created', datatype: 'datetime', length: 0, isNotNull: true, defaultvalue: 'CURRENT_TIMESTAMP', value: null},
             date_modified: {name: 'date_modified', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
             date_posted: {name: 'date_posted', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
+            date_receipt: {name: 'date_receipt', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
+            status_receipt: {name: 'status_receipt', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
+            status_escrow_accepted: {name: 'status_escrow_accepted',datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             approval_status: {name: 'approval_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             post_status: {name: 'post_status', datatype: 'tinyint', length: 0, isNotNull: false, defaultvalue: 0, value: null},
             status: {name: 'status', datatype: 'tinyint', length: 0, isNotNull: false, defaultvalue: 1, value: null}
@@ -100,11 +107,15 @@ class Bank_Transaction {
         this.#tableColumn.tableColumn.bank_code.value = middleware.Decrypt(value.body.bank_code);
         this.#tableColumn.tableColumn.account_number.value = middleware.Decrypt(value.body.account_number);
         this.#tableColumn.tableColumn.cheque_number.value = middleware.Decrypt(value.body.cheque_number);
+        this.#tableColumn.tableColumn.tax_invoice_number.value = middleware.Decrypt(value.body.tax_invoice_number);
+        this.#tableColumn.tableColumn.invoice_number.value = middleware.Decrypt(value.body.invoice_number);
+        this.#tableColumn.tableColumn.street_mail_number.value = middleware.Decrypt(value.body.street_mail_number);
         this.#tableColumn.tableColumn.bank_transaction_desc.value = middleware.Decrypt(value.body.bank_transaction_desc);
         this.#tableColumn.tableColumn.bank_transaction_date.value = middleware.Decrypt(value.body.bank_transaction_date);
         this.#tableColumn.tableColumn.bank_transaction_permission.value = middleware.Decrypt(value.body.bank_transaction_permission);
         this.#tableColumn.tableColumn.bank_transaction_type.value = middleware.Decrypt(value.body.bank_transaction_type);
         this.#tableColumn.tableColumn.transaction_type.value = middleware.Decrypt(value.body.transaction_type);
+        this.#tableColumn.tableColumn.payment_accepted.value = middleware.Decrypt(value.body.payment_accepted);
         this.#tableColumn.tableColumn.amount.value = middleware.Decrypt(value.body.amount);
         this.#tableColumn.tableColumn.path_image.value = (middleware.Decrypt(value.body.path_image) != '') ? middleware.Decrypt(value.body.path_image.slice(-27)) : uniqueSuffix+"."+ext;
         this.#tableColumn.tableColumn.approval_by.value = middleware.Decrypt(value.body.approval_by);
@@ -115,6 +126,9 @@ class Bank_Transaction {
         this.#tableColumn.tableColumn.date_created.value = middleware.Decrypt(value.body.date_created);
         this.#tableColumn.tableColumn.date_modified.value = middleware.Decrypt(value.body.date_modified);
         this.#tableColumn.tableColumn.date_posted.value = middleware.Decrypt(value.body.date_posted);
+        this.#tableColumn.tableColumn.date_receipt.value = middleware.Decrypt(value.body.date_receipt);
+        this.#tableColumn.tableColumn.status_receipt.value = middleware.Decrypt(value.body.status_receipt);
+        this.#tableColumn.tableColumn.status_escrow_accepted.value = middleware.Decrypt(value.body.status_escrow_accepted);
         this.#tableColumn.tableColumn.approval_status.value = middleware.Decrypt(value.body.approval_status);
         this.#tableColumn.tableColumn.post_status.value = middleware.Decrypt(value.body.post_status);
         this.#tableColumn.tableColumn.status.value = middleware.Decrypt(value.body.status);

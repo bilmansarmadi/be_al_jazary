@@ -1,3 +1,4 @@
 log/*
 log/db_table_id/table_id.json
 .env
+public/images/*

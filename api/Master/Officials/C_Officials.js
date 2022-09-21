@@ -70,7 +70,7 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
-            'official_id',
+            // 'official_id',
             'official_name',
             'amount',
             'created_by',
