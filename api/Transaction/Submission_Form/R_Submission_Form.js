@@ -49,20 +49,25 @@ module.exports = {
                     submission_form.organizational_unit_id,
                     submission_form.work_unit_id,
                     submission_form.project_id,
+                    submission_form.bank_code,
+                    submission_form.account_number,
                     CONVERT(DATE_FORMAT(submission_form.date_submission, "%d-%m-%Y"), CHAR(20)) AS date_submission,
                     submission_form.submission_desc,
                     submission_form.submission_type,
                     submission_form.submission_permission,
+                    submission_form.submission_financing,
                     submission_form.transaction_type,
                     submission_form.amount,
                     submission_form.checking_by,
                     submission_form.approval_by,
                     submission_form.created_by,
                     submission_form.modified_by,
-                    submission_form.date_checking,
-                    submission_form.date_approval,
-                    submission_form.date_created,
-                    submission_form.date_modified,
+                    CONVERT(DATE_FORMAT(submission_form.date_checking, "%d-%m-%Y"), CHAR(20)) AS date_checking,
+                    CONVERT(DATE_FORMAT(submission_form.date_approval, "%d-%m-%Y"), CHAR(20)) AS date_approval,
+                    CONVERT(DATE_FORMAT(submission_form.date_created, "%d-%m-%Y"), CHAR(20)) AS date_created,
+                    CONVERT(DATE_FORMAT(submission_form.date_modified, "%d-%m-%Y"), CHAR(20)) AS date_modified,
+                    CONVERT(DATE_FORMAT(submission_form.date_published, "%d-%m-%Y"), CHAR(20)) AS date_published,
+                    CONVERT(DATE_FORMAT(submission_form.date_end, "%d-%m-%Y"), CHAR(20)) AS date_end,
                     submission_form.checking_status,
                     submission_form.approval_status,
                     submission_form.allocation_status,
@@ -70,7 +75,8 @@ module.exports = {
                     workgroup.workgroup_name,
                     organizational_units.organizational_unit_name,
                     work_units.work_unit_name,
-                    project.project_name
+                    project.project_name,
+                    bank.bank_name
                 FROM
                     submission_form
                 INNER JOIN
@@ -81,6 +87,8 @@ module.exports = {
                     work_units ON work_units.work_unit_id = submission_form.work_unit_id
                 INNER JOIN
                     project ON project.project_id = submission_form.project_id
+                LEFT JOIN
+                    bank ON bank.bank_code = submission_form.bank_code
                 WHERE
                     1=1 ` + Param
             ).then((feedback) => {
@@ -125,32 +133,40 @@ module.exports = {
                     submission_form.organizational_unit_id,
                     submission_form.work_unit_id,
                     submission_form.project_id,
+                    submission_form.bank_code,
+                    submission_form.account_number,
                     CONVERT(DATE_FORMAT(submission_form.date_submission, "%d-%m-%Y"), CHAR(20)) AS date_submission,
                     submission_form.submission_desc,
                     submission_form.submission_type,
                     submission_form.submission_permission,
+                    submission_form.submission_financing,
                     submission_form.transaction_type,
                     submission_form.amount,
                     submission_form.checking_by,
                     submission_form.approval_by,
                     submission_form.created_by,
                     submission_form.modified_by,
-                    submission_form.date_checking,
-                    submission_form.date_approval,
-                    submission_form.date_created,
-                    submission_form.date_modified,
+                    CONVERT(DATE_FORMAT(submission_form.date_checking, "%d-%m-%Y"), CHAR(20)) AS date_checking,
+                    CONVERT(DATE_FORMAT(submission_form.date_approval, "%d-%m-%Y"), CHAR(20)) AS date_approval,
+                    CONVERT(DATE_FORMAT(submission_form.date_created, "%d-%m-%Y"), CHAR(20)) AS date_created,
+                    CONVERT(DATE_FORMAT(submission_form.date_modified, "%d-%m-%Y"), CHAR(20)) AS date_modified,
+                    CONVERT(DATE_FORMAT(submission_form.date_published, "%d-%m-%Y"), CHAR(20)) AS date_published,
+                    CONVERT(DATE_FORMAT(submission_form.date_end, "%d-%m-%Y"),CHAR(20)) AS date_end,
                     submission_form.checking_status,
                     submission_form.approval_status,
                     submission_form.allocation_status,
                     submission_form.status,
                     workgroup.workgroup_name,
-                    project.project_name
+                    project.project_name,
+                    bank.bank_name
                 FROM
                     submission_form
                 INNER JOIN
                     workgroup ON workgroup.workgroup_id = submission_form.workgroup_id
                 INNER JOIN
                     project ON project.project_id = submission_form.project_id
+                LEFT JOIN
+                    bank ON bank.bank_code = submission_form.bank_code
                 WHERE
                     1=1 ` + Param
             ).then((feedback) => {

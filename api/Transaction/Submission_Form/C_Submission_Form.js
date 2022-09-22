@@ -15,12 +15,21 @@ module.exports = {
             // Data.tableColumn.submission_number.value = ID.Read_Id(Data.TableName);
 
             if (DataValidation(Data)) {
-                var ValidationArr = {
-                    Table   : Data.TableName,
-                    Field   : `CONCAT('OPS', '-', workgroup_id, '-', DATE_FORMAT(date_submission, '%y'), DATE_FORMAT(date_submission, '%m'), '-', LPAD(COUNT(submission_number)+1, 4, '0')) AS ID`,
-                    Clause  : "date_submission = '"+Data.tableColumn.date_submission.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND date_submission = '"+Data.tableColumn.date_submission.value+"' GROUP BY date_submission, workgroup_id",
-                    Return  : 'Data'
-                };
+                if (Data.tableColumn.submission_permission.value === 'O') {
+                    var ValidationArr = {
+                        Table   : Data.TableName,
+                        Field   : `CONCAT('OPS', '-', workgroup_id, '-', DATE_FORMAT(date_submission, '%y'), DATE_FORMAT(date_submission, '%m'), '-', LPAD(COUNT(submission_number)+1, 4, '0')) AS ID`,
+                        Clause  : "date_submission = '"+Data.tableColumn.date_submission.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND date_submission = '"+Data.tableColumn.date_submission.value+"' GROUP BY date_submission, workgroup_id",
+                        Return  : 'Data'
+                    };
+                } else if (Data.tableColumn.submission_permission.value === 'AP') {
+                    var ValidationArr = {
+                        Table   : Data.TableName,
+                        Field   : `CONCAT('APR', '-', workgroup_id, '-', DATE_FORMAT(date_submission, '%y'), DATE_FORMAT(date_submission, '%m'), '-', LPAD(COUNT(submission_number)+1, 4, '0')) AS ID`,
+                        Clause  : "date_submission = '"+Data.tableColumn.date_submission.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND date_submission = '"+Data.tableColumn.date_submission.value+"' GROUP BY date_submission, workgroup_id",
+                        Return  : 'Data'
+                    };
+                }
 
                 Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['checking_by', 'approval_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'checking_status', 'approval_status', 'allocation_status']);
 
@@ -40,8 +49,15 @@ module.exports = {
                         var YY = date[2].slice(-2);
 
                         var format = YY + MM + '-';
+                        
+                        var formatPermission = '';
+                        if (Data.tableColumn.submission_permission.value === 'O') {
+                            var formatPermission = 'OPS';
+                        } else if (Data.tableColumn.submission_permission.value === 'AP') {
+                            var formatPermission = 'APR';
+                        }
 
-                        Data.tableColumn.submission_number.value = `OPS` + `-` + Data.tableColumn.workgroup_id.value + `-` + format + `0001`;
+                        Data.tableColumn.submission_number.value = formatPermission + `-` + Data.tableColumn.workgroup_id.value + `-` + format + `0001`;
                     }
 
                     columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
@@ -84,13 +100,13 @@ function DataValidation(Data) {
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
             // 'submission_number',
-            'workgroup_id',
+            // 'workgroup_id',
             // 'organizational_unit_id',
             // 'work_unit_id',
-            'project_id',
-            'date_submission',
+            // 'project_id',
+            // 'date_submission',
             'submission_permission',
-            'amount',
+            // 'amount',
             'status'
         ];
 
