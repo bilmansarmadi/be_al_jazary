@@ -72,6 +72,8 @@ class Bank_Transaction {
             date_modified: {name: 'date_modified', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
             date_posted: {name: 'date_posted', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
             date_receipt: {name: 'date_receipt', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
+            date_published: {name: 'date_published', datatype: 'date', length: 0, isNotNull: false, defaultvalue: null, value: null},
+            date_end: {name: 'date_end', datatype: 'date', length: 0, isNotNull: false, defaultvalue: null, value: null},
             status_receipt: {name: 'status_receipt', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             status_escrow_accepted: {name: 'status_escrow_accepted',datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             approval_status: {name: 'approval_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
@@ -127,6 +129,8 @@ class Bank_Transaction {
         this.#tableColumn.tableColumn.date_modified.value = middleware.Decrypt(value.body.date_modified);
         this.#tableColumn.tableColumn.date_posted.value = middleware.Decrypt(value.body.date_posted);
         this.#tableColumn.tableColumn.date_receipt.value = middleware.Decrypt(value.body.date_receipt);
+        this.#tableColumn.tableColumn.date_published.value = middleware.Decrypt(value.body.date_published);
+        this.#tableColumn.tableColumn.date_end.value = middleware.Decrypt(value.body.date_end);
         this.#tableColumn.tableColumn.status_receipt.value = middleware.Decrypt(value.body.status_receipt);
         this.#tableColumn.tableColumn.status_escrow_accepted.value = middleware.Decrypt(value.body.status_escrow_accepted);
         this.#tableColumn.tableColumn.approval_status.value = middleware.Decrypt(value.body.approval_status);

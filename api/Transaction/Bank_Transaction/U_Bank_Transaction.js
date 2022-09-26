@@ -57,7 +57,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['bank_transaction_id', 'no_voucher', 'workgroup_id', 'project_id', 'guarantee_id', 'bank_code', 'account_number', 'cheque_number', 'tax_invoice_number', 'invoice_number', 'street_mail_number', 'bank_transaction_desc', 'bank_transaction_date', 'bank_transaction_permission', 'bank_transaction_type', 'transaction_type', 'payment_accepted', 'amount', 'path_image', 'created_by', 'modified_by', 'posted_by', 'date_created', 'date_modified', 'date_posted', 'date_receipt', 'status_receipt', 'status_escrow_accepted', 'post_status', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['bank_transaction_id', 'no_voucher', 'workgroup_id', 'project_id', 'guarantee_id', 'bank_code', 'account_number', 'cheque_number', 'tax_invoice_number', 'invoice_number', 'street_mail_number', 'bank_transaction_desc', 'bank_transaction_date', 'bank_transaction_permission', 'bank_transaction_type', 'transaction_type', 'payment_accepted', 'amount', 'path_image', 'created_by', 'modified_by', 'posted_by', 'date_created', 'date_modified', 'date_posted', 'date_receipt', 'date_published', 'date_end', 'status_receipt', 'status_escrow_accepted', 'post_status', 'status']);
 
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
@@ -91,7 +91,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['bank_transaction_id', 'no_voucher', 'workgroup_id', 'project_id', 'guarantee_id', 'bank_code', 'account_number', 'cheque_number', 'tax_invoice_number', 'invoice_number', 'street_mail_number', 'bank_transaction_desc', 'bank_transaction_date', 'bank_transaction_permission', 'bank_transaction_type', 'transaction_type', 'payment_accepted', 'amount', 'path_image', 'approval_by', 'created_by', 'modified_by', 'date_approval', 'date_created', 'date_modified', 'date_receipt', 'status_receipt', 'status_escrow_accepted', 'approval_status', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['bank_transaction_id', 'no_voucher', 'workgroup_id', 'project_id', 'guarantee_id', 'bank_code', 'account_number', 'cheque_number', 'tax_invoice_number', 'invoice_number', 'street_mail_number', 'bank_transaction_desc', 'bank_transaction_date', 'bank_transaction_permission', 'bank_transaction_type', 'transaction_type', 'payment_accepted', 'amount', 'path_image', 'approval_by', 'created_by', 'modified_by', 'date_approval', 'date_created', 'date_modified', 'date_receipt', 'date_published', 'date_end', 'status_receipt', 'status_escrow_accepted', 'approval_status', 'status']);
 
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
@@ -159,7 +159,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['bank_transaction_id', 'no_voucher', 'workgroup_id', 'project_id', 'guarantee_id', 'bank_code', 'account_number', 'cheque_number', 'tax_invoice_number', 'invoice_number', 'street_mail_number', 'bank_transaction_desc', 'bank_transaction_date', 'bank_transaction_permission', 'bank_transaction_type', 'transaction_type', 'payment_accepted', 'amount', 'path_image', 'approval_by', 'created_by', 'modified_by', 'posted_by', 'date_approval', 'date_created', 'date_modified', 'date_posted', 'date_receipt', 'status_receipt', 'approval_status', 'post_status', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['bank_transaction_id', 'no_voucher', 'workgroup_id', 'project_id', 'guarantee_id', 'bank_code', 'account_number', 'cheque_number', 'tax_invoice_number', 'invoice_number', 'street_mail_number', 'bank_transaction_desc', 'bank_transaction_date', 'bank_transaction_permission', 'bank_transaction_type', 'transaction_type', 'payment_accepted', 'amount', 'path_image', 'approval_by', 'created_by', 'modified_by', 'posted_by', 'date_approval', 'date_created', 'date_modified', 'date_posted', 'date_receipt', 'date_published', 'date_end', 'status_receipt', 'approval_status', 'post_status', 'status']);
 
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 

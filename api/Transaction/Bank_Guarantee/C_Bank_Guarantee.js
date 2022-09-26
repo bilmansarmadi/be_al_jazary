@@ -12,15 +12,17 @@ var _Data = {
 module.exports = {
 	Create:function(res, Data) {
 		if (Data.Route === 'DEFAULT') {
+            Data.tableColumn.guarantee_id.value = ID.Read_Id(Data.TableName);
+
 			if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : Data.TableName,
-                    Field   : 'guarantee_id',
-                    Clause  : "guarantee_id = '"+ Data.tableColumn.guarantee_id.value +"'",
-                    Return  : 'Boolean'
+                    Field   : `CONCAT(guarantee_permission, '-', workgroup_id, '-', DATE_FORMAT(guarantee_date, '%y'), DATE_FORMAT(guarantee_date, '%m'), '-', LPAD(COUNT(no_voucher)+1, 4, '0')) AS ID`,
+                    Clause  : "guarantee_date = '"+Data.tableColumn.guarantee_date.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND guarantee_permission = '"+Data.tableColumn.guarantee_permission.value+"' GROUP BY guarantee_date, workgroup_id, guarantee_permission",
+                    Return  : 'Data'
                 };
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['guarantee_id_old', 'modified_by', 'date_created', 'date_modified']); 
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_created', 'date_modified']); 
 
 				let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
@@ -28,23 +30,36 @@ module.exports = {
                 db.Validation(
                     ValidationArr
                 ).then((feedback) => {
-                    if (feedback) {
-                        return db.Transaction(
-                            `INSERT INTO `
-                                + Data.TableName + ` 
-                            (`
-                                + columnNameString +   
-                            `) 
-                            VALUES 
-                            (`
-                                + columnValueString +
-                            `);`
-                        );
+                    if (feedback.length !== 0) {
+                        Data.tableColumn.guarantee_id.value = feedback[0].ID;
                     } else {
-                        return false;
+                        var date = Data.tableColumn.guarantee_date.value;
+                        date = date.split('-');
+
+                        var MM = date[1];
+                        var YY = date[0].slice(-2);
+
+                        var format = YY + MM + '-';
+
+                        Data.tableColumn.guarantee_id.value = Data.tableColumn.guarantee_permission.value + `-` + Data.tableColumn.workgroup_id.value + `-` + format + `0001`;
                     }
+                    
+                    columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
+
+                    return db.Transaction(
+                        `INSERT INTO `
+                            + Data.TableName + ` 
+                        (`
+                            + columnNameString +   
+                        `) 
+                        VALUES 
+                        (`
+                            + columnValueString +
+                        `);`
+                    );
                 }).then((feedback) => {
                     if (feedback !== false) {
+                        ID.Write_Id(Data.TableName);
                         middleware.Response(res, feedback);
                     } else {
                         _Data.Status = 3006;
@@ -68,12 +83,13 @@ function DataValidation(Data) {
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
             'guarantee_id',
+            'workgroup_id',
             'project_id',
-            'guarantee_address',
+            'bank_code',
             'account_number',
+            'guarantee_permission',
+            'guarantee_date',
             'total_amount',
-            'total_paid',
-            'total_received',
             'date_published',
             'date_end',
             'created_by',
