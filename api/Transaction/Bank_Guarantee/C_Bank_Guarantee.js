@@ -17,7 +17,7 @@ module.exports = {
 			if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : Data.TableName,
-                    Field   : `CONCAT(guarantee_permission, '-', workgroup_id, '-', DATE_FORMAT(guarantee_date, '%y'), DATE_FORMAT(guarantee_date, '%m'), '-', LPAD(COUNT(no_voucher)+1, 4, '0')) AS ID`,
+                    Field   : `CONCAT(guarantee_permission, '-', workgroup_id, '-', DATE_FORMAT(guarantee_date, '%y'), DATE_FORMAT(guarantee_date, '%m'), '-', LPAD(COUNT(guarantee_id)+1, 4, '0')) AS ID`,
                     Clause  : "guarantee_date = '"+Data.tableColumn.guarantee_date.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND guarantee_permission = '"+Data.tableColumn.guarantee_permission.value+"' GROUP BY guarantee_date, workgroup_id, guarantee_permission",
                     Return  : 'Data'
                 };

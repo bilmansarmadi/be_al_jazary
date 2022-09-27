@@ -52,7 +52,8 @@ class Submission_Form {
             checking_status: {name: 'checking_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             approval_status: {name: 'approval_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             allocation_status: {name: 'allocation_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
-            status: {name: 'status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 1, value: null}
+            status_cashing: {name: 'status_cashing', datatype: 'int', length: 1, isNotNull: false, defaultvalue: 0, value: null},
+            status: {name: 'status', datatype: 'tinyint', length: 1, isNotNull: true, defaultvalue: 1, value: null}
         }
     }
 
@@ -102,6 +103,7 @@ class Submission_Form {
         this.#tableColumn.tableColumn.checking_status.value = middleware.Decrypt(value.body.checking_status);
         this.#tableColumn.tableColumn.approval_status.value = middleware.Decrypt(value.body.approval_status);
         this.#tableColumn.tableColumn.allocation_status.value = middleware.Decrypt(value.body.allocation_status);
+        this.#tableColumn.tableColumn.status_cashing.value = middleware.Decrypt(value.body.status_cashing);
         this.#tableColumn.tableColumn.status.value = middleware.Decrypt(value.body.status);
     }
 }
