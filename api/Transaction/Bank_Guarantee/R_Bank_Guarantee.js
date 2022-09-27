@@ -47,7 +47,7 @@ module.exports = {
 					workgroup.workgroup_name,
 					project.project_name,
 					bank.bank_name,
-					bank_guarantee.date_end <= NOW() AS show_notification
+					bank_guarantee.date_end <= NOW() + INTERVAL 10 DAY AS show_notification
 				FROM
 					bank_guarantee
 				INNER JOIN
@@ -128,7 +128,7 @@ module.exports = {
 					workgroup.workgroup_name,
 					project.project_name,
 					bank.bank_name,
-					bank_guarantee.date_end <= NOW() AS show_notification
+					bank_guarantee.date_end <= NOW() + INTERVAL 10 DAY AS show_notification
 				FROM
 					bank_guarantee
 				INNER JOIN
