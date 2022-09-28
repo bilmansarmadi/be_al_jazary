@@ -2,10 +2,10 @@ var middleware  = require('nox');
 var db          = require('nox-db');
 
 var _Data = {
-	Status	: 1000,
-	Data	: [],
-	Error	: '',
-	Message	: ''
+    Status  : 1000,
+    Data    : [],
+    Error   : '',
+    Message : ''
 };
 
 module.exports = {
@@ -166,13 +166,13 @@ module.exports = {
                         'Field' : 'cashbank_id',
                         'Value' : Data.tableColumn.cashbank_id.value,
                         'Syntax': '='
-                    },
-                    {
-                        'Table' : Data.TableName,
-                        'Field' : 'cashbank_type',
-                        'Value' : getCashbankType(Data.tableColumn.cashbank_type.value),
-                        'Syntax': 'IN'
                     }
+                    // {
+                    //     'Table' : Data.TableName,
+                    //     'Field' : 'cashbank_type',
+                    //     'Value' : getCashbankType(Data.tableColumn.cashbank_type.value),
+                    //     'Syntax': 'IN'
+                    // }
                 ]
             };
 
@@ -198,11 +198,9 @@ module.exports = {
                     cashbank.date_posted,
                     cashbank.post_status,
                     cashbank.status,
-                    cashbank_detail.amount
+                    cashbank.amount
                 FROM
                     cashbank
-                INNER JOIN
-                    cashbank_detail ON cashbank_detail.cashbank_id = cashbank.cashbank_id
                 WHERE
                     1=1 ` + qry_where + Param
             ).then((feedback) => {
