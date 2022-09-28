@@ -12,12 +12,26 @@ module.exports = {
     Read:function(res, Data) {
         if (Data.Route === 'DEFAULT') {
             var Arr = {
-                'Data': [{
-                    'Table' : Data.TableName,
-                    'Field' : 'official_id',
-                    'Value' : Data.tableColumn.official_id.value,
-                    'Syntax': '='
-                }]
+                'Data': [
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'official_id',
+                        'Value' : Data.tableColumn.official_id.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'submission_number',
+                        'Value' : Data.tableColumn.submission_number.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'work_unit_id',
+                        'Value' : Data.tableColumn.work_unit_id.value,
+                        'Syntax': '='
+                    }
+                ]
             };
 
             var Param = middleware.AdvSqlParamGenerator(Arr);

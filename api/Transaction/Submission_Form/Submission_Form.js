@@ -35,7 +35,7 @@ class Submission_Form {
             submission_desc: {name: 'submission_desc', datatype: 'varchar', length: 100, isNotNull: false, defaultvalue: null, value: null},
             submission_type: {name: 'submission_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             submission_permission: {name: 'submission_permission', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
-            submission_financing: {name: 'submission_financing', datatype: 'decimal', length: 10, isNotNull: false, defaultvalue: 0.0, value: null},
+            submission_financing: {name: 'submission_financing', datatype: 'decimal', length: 10, isNotNull: false, defaultvalue: 0, value: null},
             transaction_type: {name: 'transaction_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             amount: {name: 'amount', datatype: 'decimal', length: 50.0, isNotNull: true, defaultvalue: null, value: null},
             checking_by: {name: 'checking_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},

@@ -43,6 +43,39 @@ module.exports = {
                 _Data.Status = 3005;
                 middleware.Response(res, _Data);
             }
+        } else if (Data.Route === 'UPDATE_AMOUNT') {
+            if (DataValidation(Data)) {
+                var Arr = {
+                    'Data': [{
+                        'Table' : Data.TableName,
+                        'Field' : 'submission_number',
+                        'Value' : Data.tableColumn.submission_number.value,
+                        'Syntax': '='
+                    }]
+                };
+
+                var Param = middleware.AdvSqlParamGenerator(Arr);
+
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing']);
+                let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
+
+                db.Transaction(
+                    `UPDATE `
+                        + Data.TableName
+                        + columnValueString +`
+                    WHERE
+                        1=1 ` + Param
+                ).then((feedback) => {
+                    if (feedback.Status === 1000) {
+                        middleware.Response(res, feedback);
+                    } else {
+                        middleware.Response(res, feedback);
+                    }
+                });
+            } else {
+                _Data.Status = 3005;
+                middleware.Response(res, _Data);
+            }
         } else if (Data.Route === 'CHECKING') {
             if (DataValidation(Data)) {
                 var Arr = {
@@ -195,6 +228,13 @@ function DataValidation(Data) {
             'modified_by',
             'date_modified',
             'status'
+        ];
+
+        Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
+    } else if (Data.Route === 'UPDATE_AMOUNT') {
+        var ColumnArr = [
+            'submission_number',
+            'amount'
         ];
 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);

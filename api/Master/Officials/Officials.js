@@ -26,6 +26,8 @@ class Officials {
     #tableColumn = {
         tableColumn: {
             official_id: {name: 'official_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+            submission_number: {name: 'submission_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
+            work_unit_id: {name: 'work_unit_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             official_name: {name: 'official_name', datatype: 'varchar', length: 100, isNotNull: true, defaultvalue: '', value: null},
             amount: {name: 'amount', datatype: 'decimal', length: 50.5, isNotNull: true, defaultvalue: null, value: null},
             created_by: {name: 'created_by', datatype: 'varchar', length: 15, isNotNull: true, defaultvalue: '', value: null},
@@ -56,6 +58,8 @@ class Officials {
         this.#Identity.Route    = middleware.Decrypt(value.body.Route);
 
         this.#tableColumn.tableColumn.official_id.value = middleware.Decrypt(value.body.official_id);
+        this.#tableColumn.tableColumn.submission_number.value = middleware.Decrypt(value.body.submission_number);
+        this.#tableColumn.tableColumn.work_unit_id.value = middleware.Decrypt(value.body.work_unit_id);
         this.#tableColumn.tableColumn.official_name.value = middleware.Decrypt(value.body.official_name);
         this.#tableColumn.tableColumn.amount.value = middleware.Decrypt(value.body.amount);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);
