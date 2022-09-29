@@ -119,7 +119,7 @@ class Bank_Transaction {
         this.#tableColumn.tableColumn.transaction_type.value = middleware.Decrypt(value.body.transaction_type);
         this.#tableColumn.tableColumn.payment_accepted.value = middleware.Decrypt(value.body.payment_accepted);
         this.#tableColumn.tableColumn.amount.value = middleware.Decrypt(value.body.amount);
-        this.#tableColumn.tableColumn.path_image.value = (middleware.Decrypt(value.body.path_image) != '') ? middleware.Decrypt(value.body.path_image.slice(-27)) : uniqueSuffix+"."+ext;
+        this.#tableColumn.tableColumn.path_image.value = (middleware.Decrypt(value.body.path_image) != '') ? middleware.Decrypt(value.body.path_image.substr(51)) : uniqueSuffix+"."+ext;
         this.#tableColumn.tableColumn.approval_by.value = middleware.Decrypt(value.body.approval_by);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);
         this.#tableColumn.tableColumn.modified_by.value = middleware.Decrypt(value.body.modified_by);
