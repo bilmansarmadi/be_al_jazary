@@ -59,7 +59,7 @@ function DataValidation(Data) {
             'bank_code',
             'currency_id',
             'workgroup_id',
-            'coa_code',
+            // 'coa_code',
             'account_name',
             'account_type',
             'current_balance',

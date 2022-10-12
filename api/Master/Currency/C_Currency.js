@@ -19,6 +19,8 @@ module.exports = {
                     Return  : 'Boolean'
                 }; 
 
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['currency_id_old']);
+
 				let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
 

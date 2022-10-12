@@ -16,14 +16,14 @@ module.exports = {
                     'Data': [{
                         'Table' : Data.TableName,
                         'Field' : 'currency_id',
-                        'Value' : Data.tableColumn.currency_id.value,
+                        'Value' : Data.tableColumn.currency_id_old.value,
                         'Syntax': '='
                     }]                
                 }; 
 			
 			    var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn  = middleware.ExcludeTableColumn(Data.tableColumn, ['currency_id']);
+                Data.tableColumn  = middleware.ExcludeTableColumn(Data.tableColumn, ['currency_id_old']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 				
 				db.Transaction(

@@ -27,7 +27,9 @@ class Currency {
 		tableColumn: {
 			currency_id: {name: 'currency_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
 			currency_name: {name: 'currency_name', datatype: 'varchar', length: 100, isNotNull: true, defaultvalue: '', value: null},
-			local_currency: {name: 'local_currency', datatype: 'int', length: 0, isNotNull: true, defaultvalue: 0, value: null}
+			local_currency: {name: 'local_currency', datatype: 'int', length: 0, isNotNull: true, defaultvalue: 0, value: null},
+			
+			currency_id_old: {name: 'currency_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
 		}
 	}
 	
@@ -53,6 +55,8 @@ class Currency {
 		this.#tableColumn.tableColumn.currency_id.value = middleware.Decrypt(value.body.currency_id);
 		this.#tableColumn.tableColumn.currency_name.value = middleware.Decrypt(value.body.currency_name);
 		this.#tableColumn.tableColumn.local_currency.value = middleware.Decrypt(value.body.local_currency);
+
+		this.#tableColumn.tableColumn.currency_id_old.value = middleware.Decrypt(value.body.currency_id_old);
 	}
 }
 
