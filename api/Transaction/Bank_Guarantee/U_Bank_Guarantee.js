@@ -16,7 +16,7 @@ module.exports = {
                     'Data': [{
                         'Table' : Data.TableName,
                         'Field' : 'guarantee_id',
-                        'Value' : Data.tableColumn.guarantee_idd.value,
+                        'Value' : Data.tableColumn.guarantee_id_old.value,
                         'Syntax': '='
                     }]                
                 }; 
@@ -56,7 +56,7 @@ module.exports = {
 			
 			    var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['workgroup_id', 'project_id', 'bank_code', 'account_number', 'guarantee_address', 'guarantee_permission', 'guarantee_type', 'guarantee_date', 'total_amount', 'date_published', 'date_end', 'created_by', 'modified_by', 'date_created', 'date_modified', 'status']);                
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['guarantee_id_old', 'guarantee_id_old', 'workgroup_id', 'project_id', 'bank_code', 'account_number', 'guarantee_address', 'guarantee_permission', 'guarantee_type', 'guarantee_date', 'total_amount', 'date_published', 'date_end', 'created_by', 'modified_by', 'date_created', 'date_modified', 'status']);                
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 				
 				db.Transaction(

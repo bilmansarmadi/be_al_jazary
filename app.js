@@ -22,6 +22,7 @@ var guaranteeTypeRouter       = require('./api/Master/Guarantee_Type/Guarantee_T
 var officialsRouter           = require('./api/Master/Officials/Officials');
 var journalRouter             = require('./api/Transaction/Journal/Journal');
 var organizationalUnitsRouter = require('./api/Master/Organizational_Units/Organizational_Units');
+var positionsRouter           = require('./api/Master/Positions/Positions');
 var projectRouter             = require('./api/Master/Project/Project');
 var submissionFormRouter      = require('./api/Transaction/Submission_Form/Submission_Form');
 var usersRouter               = require('./api/Master/Users/Users');
@@ -59,6 +60,7 @@ app.use('/api/Master/GuaranteeType', guaranteeTypeRouter);
 app.use('/api/Master/Officials', officialsRouter);
 app.use('/api/Transaction/Journal', journalRouter);
 app.use('/api/Master/OrganizationalUnits', organizationalUnitsRouter);
+app.use('/api/Master/Positions', positionsRouter);
 app.use('/api/Master/Project', projectRouter);
 app.use('/api/Transaction/SubmissionForm', submissionFormRouter);
 app.use('/api/Master/Users', usersRouter);

@@ -51,6 +51,7 @@ class Bank_Transaction {
             guarantee_id: {name: 'guarantee_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             bank_code: {name: 'bank_code', datatype: 'varchar', length: 10, isNotNull: false, defaultvalue: null, value: null},
             account_number: {name: 'account_number', datatype: 'varchar', length: 50, isNotNull: true, defaultvalue: null, value: null},
+            guarantee_id: {name: 'guarantee_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             cheque_number: {name: 'cheque_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             tax_invoice_number: {name: 'tax_invoice_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             invoice_number: {name: 'invoice_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
@@ -108,6 +109,7 @@ class Bank_Transaction {
         this.#tableColumn.tableColumn.guarantee_id.value = middleware.Decrypt(value.body.guarantee_id);
         this.#tableColumn.tableColumn.bank_code.value = middleware.Decrypt(value.body.bank_code);
         this.#tableColumn.tableColumn.account_number.value = middleware.Decrypt(value.body.account_number);
+        this.#tableColumn.tableColumn.guarantee_id.value = middleware.Decrypt(value.body.guarantee_id);
         this.#tableColumn.tableColumn.cheque_number.value = middleware.Decrypt(value.body.cheque_number);
         this.#tableColumn.tableColumn.tax_invoice_number.value = middleware.Decrypt(value.body.tax_invoice_number);
         this.#tableColumn.tableColumn.invoice_number.value = middleware.Decrypt(value.body.invoice_number);

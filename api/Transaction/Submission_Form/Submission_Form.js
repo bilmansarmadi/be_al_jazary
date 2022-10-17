@@ -32,10 +32,11 @@ class Submission_Form {
             project_id: {name: 'project_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             bank_code: {name: 'bank_code', datatype: 'varchar', length: 10, isNotNull: false, defaultvalue: null, value: null},
             account_number: {name: 'account_number', datatype: 'varchar', length: 50, isNotNull: false, defaultvalue: null, value: null},
+            guarantee_id: {name: 'guarantee_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             submission_desc: {name: 'submission_desc', datatype: 'varchar', length: 100, isNotNull: false, defaultvalue: null, value: null},
             submission_type: {name: 'submission_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             submission_permission: {name: 'submission_permission', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
-            submission_financing: {name: 'submission_financing', datatype: 'decimal', length: 10, isNotNull: false, defaultvalue: 0, value: null},
+            submission_financing: {name: 'submission_financing', datatype: 'decimal', length: 10, isNotNull: false, defaultvalue: null, value: null},
             transaction_type: {name: 'transaction_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             amount: {name: 'amount', datatype: 'decimal', length: 50.0, isNotNull: true, defaultvalue: null, value: null},
             checking_by: {name: 'checking_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
@@ -52,7 +53,7 @@ class Submission_Form {
             checking_status: {name: 'checking_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             approval_status: {name: 'approval_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             allocation_status: {name: 'allocation_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
-            status_cashing: {name: 'status_cashing', datatype: 'int', length: 1, isNotNull: false, defaultvalue: 0, value: null},
+            status_cashing: {name: 'status_cashing', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: '0', value: null},
             status: {name: 'status', datatype: 'tinyint', length: 1, isNotNull: true, defaultvalue: 1, value: null}
         }
     }
@@ -83,6 +84,7 @@ class Submission_Form {
         this.#tableColumn.tableColumn.project_id.value = middleware.Decrypt(value.body.project_id);
         this.#tableColumn.tableColumn.bank_code.value = middleware.Decrypt(value.body.bank_code);
         this.#tableColumn.tableColumn.account_number.value = middleware.Decrypt(value.body.account_number);
+        this.#tableColumn.tableColumn.guarantee_id.value = middleware.Decrypt(value.body.guarantee_id);
         this.#tableColumn.tableColumn.submission_desc.value = middleware.Decrypt(value.body.submission_desc);
         this.#tableColumn.tableColumn.submission_type.value = middleware.Decrypt(value.body.submission_type);
         this.#tableColumn.tableColumn.submission_permission.value = middleware.Decrypt(value.body.submission_permission);

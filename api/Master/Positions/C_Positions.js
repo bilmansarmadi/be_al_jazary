@@ -12,17 +12,17 @@ var _Data = {
 module.exports = {
     Create:function(res, Data) {
         if (Data.Route === 'DEFAULT') {
-            Data.tableColumn.official_id.value = ID.Read_Id(Data.TableName);
+            Data.tableColumn.position_id.value = ID.Read_Id(Data.TableName);
 
             if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : Data.TableName,
-                    Field   : 'official_id',
-                    Clause  : "official_id = '"+ Data.tableColumn.official_id.value +"'",
+                    Field   : 'position_id',
+                    Clause  : "position_id = '"+ Data.tableColumn.position_id.value +"'",
                     Return  : 'Boolean'
                 };
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_created', 'date_modified']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_modified', 'date_created']);
 
                 let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
@@ -55,7 +55,7 @@ module.exports = {
                     }
                 });
             } else {
-                _Data.Status = 3005;
+                _Data.Status = 3006;
                 middleware.Response(res, _Data);
             }
         } else {
@@ -70,10 +70,10 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
-            // 'official_id',
-            'official_name',
-            'official_rank',
-            'amount_submission',
+            'position_id',
+            'organizational_unit_id',
+            'work_unit_id',
+            'position_name',
             'created_by',
             'status'
         ];

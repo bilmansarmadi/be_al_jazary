@@ -45,7 +45,8 @@ class Bank_Guarantee {
 			date_modified: {name: 'date_modified', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
 			status_cashing: {name: 'status_cashing', datatype: 'int', length: 0, isNotNull: false, defaultvalue: 0, value: null},
 			status: {name: 'status', datatype: 'int', length: 0, isNotNull: true, defaultvalue: 1, value: null},
-			// guarantee_id_old: {name: 'guarantee_id_old', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null}
+
+			guarantee_id_old: {name: 'guarantee_id_old', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null}
 		}
 	}
 	
@@ -88,7 +89,8 @@ class Bank_Guarantee {
 		this.#tableColumn.tableColumn.date_modified.value = middleware.Decrypt(value.body.date_modified);
 		this.#tableColumn.tableColumn.status_cashing.value = middleware.Decrypt(value.body.status_cashing);
 		this.#tableColumn.tableColumn.status.value = middleware.Decrypt(value.body.status);
-		// this.#tableColumn.tableColumn.guarantee_id_old.value = middleware.Decrypt(value.body.guarantee_id_old);
+
+		this.#tableColumn.tableColumn.guarantee_id_old.value = middleware.Decrypt(value.body.guarantee_id_old);
 	}
 }
 

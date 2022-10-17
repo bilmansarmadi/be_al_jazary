@@ -72,6 +72,7 @@ function DataValidation(Data) {
         var ColumnArr = [
             'work_unit_id',
             'work_unit_name',
+            'work_unit_group',
             'status'
         ];
 

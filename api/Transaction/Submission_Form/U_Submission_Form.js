@@ -56,7 +56,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -89,7 +89,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'approval_by', 'created_by', 'modified_by', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'approval_by', 'created_by', 'modified_by', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -122,7 +122,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'checking_by', 'created_by', 'modified_by', 'date_checking', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'allocation_status', 'status_cashing', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'checking_by', 'created_by', 'modified_by', 'date_checking', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'allocation_status', 'status_cashing', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -155,7 +155,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'status_cashing', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'status_cashing', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -188,7 +188,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'allocation_status', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'allocation_status', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
