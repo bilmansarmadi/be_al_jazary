@@ -49,7 +49,9 @@ module.exports = {
 
             db.Read(
                 `SELECT
-					*
+                    work_unit_id,
+                    organizational_unit_id,
+                    CONCAT(work_unit_name, ' (',work_unit_group, ')') AS work_unit_name
 				FROM
 					work_units
 				WHERE
