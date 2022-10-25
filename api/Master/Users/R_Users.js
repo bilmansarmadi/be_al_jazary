@@ -41,9 +41,12 @@ module.exports = {
 
 				db.Read(
 					`SELECT
-						*
+						users.*,
+						division.division_name
 					FROM
 						users
+					INNER JOIN
+						division ON division.division_id = users.division_id
 					WHERE
 						1=1` + Param
 				).then((feedback) => {
