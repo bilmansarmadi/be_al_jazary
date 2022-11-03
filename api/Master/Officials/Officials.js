@@ -36,6 +36,7 @@ class Officials {
             amount_submission: {name: 'amount_submission', datatype: 'decimal', length: 50.5, isNotNull: false, defaultvalue: null, value: null},
             amount_checking: {name: 'amount_checking', datatype: 'decimal', length: 50.5, isNotNull: false, defaultvalue: null, value: null},
             amount_approval: {name: 'amount_approval', datatype: 'decimal', length: 50.5, isNotNull: false, defaultvalue: null, value: null},
+            paid_status: {name: 'paid_status', datatype: 'tinyint', length: 1, isNotNull: true, defaultvalue: 0, value: null},
             created_by: {name: 'created_by', datatype: 'varchar', length: 15, isNotNull: true, defaultvalue: '', value: null},
             modified_by: {name: 'modified_by', datatype: 'varchar', length: 15, isNotNull: false, defaultvalue: '', value: null},
             date_created: {name: 'date_created', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: 'CURRENT_TIMESTAMP', value: null},
@@ -43,7 +44,12 @@ class Officials {
             status_submission: {name: 'status_submission', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             status_checking: {name: 'status_checking', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             status_approval: {name: 'status_approval', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
-            status: {name: 'status', datatype: 'tinyint', length: 1, isNotNull: true, defaultvalue: 1, value: null}
+            status: {name: 'status', datatype: 'tinyint', length: 1, isNotNull: true, defaultvalue: 1, value: null},
+
+            amount_range_from: {name: 'amount_range_from', datatype: 'decimal', length: 100, isNotNull: true, defaultvalue: 0, value: null},
+            amount_range_to: {name: 'amount_range_to', datatype: 'decimal', length: 100, isNotNull: true, defaultvalue: 0, value: null},
+            project_id: {name: 'project_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+            submission_permission: {name: 'submission_permission', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
         }
     }
 
@@ -77,6 +83,7 @@ class Officials {
         this.#tableColumn.tableColumn.amount_submission.value = middleware.Decrypt(value.body.amount_submission);
         this.#tableColumn.tableColumn.amount_checking.value = middleware.Decrypt(value.body.amount_checking);
         this.#tableColumn.tableColumn.amount_approval.value = middleware.Decrypt(value.body.amount_approval);
+        this.#tableColumn.tableColumn.paid_status.value = middleware.Decrypt(value.body.paid_status);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);
         this.#tableColumn.tableColumn.modified_by.value = middleware.Decrypt(value.body.modified_by);
         this.#tableColumn.tableColumn.date_created.value = middleware.Decrypt(value.body.date_created);
@@ -85,6 +92,11 @@ class Officials {
         this.#tableColumn.tableColumn.status_checking.value = middleware.Decrypt(value.body.status_checking);
         this.#tableColumn.tableColumn.status_approval.value = middleware.Decrypt(value.body.status_approval);
         this.#tableColumn.tableColumn.status.value = middleware.Decrypt(value.body.status);
+
+        this.#tableColumn.tableColumn.amount_range_from.value = middleware.Decrypt(value.body.amount_range_from);
+        this.#tableColumn.tableColumn.amount_range_to.value = middleware.Decrypt(value.body.amount_range_to);
+        this.#tableColumn.tableColumn.project_id.value = middleware.Decrypt(value.body.project_id);
+        this.#tableColumn.tableColumn.submission_permission.value = middleware.Decrypt(value.body.submission_permission);
     }
 }
 

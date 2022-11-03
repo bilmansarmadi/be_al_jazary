@@ -45,7 +45,7 @@ module.exports = {
                     };
                 }
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['checking_by', 'approval_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'checking_status', 'approval_status', 'allocation_status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['money_status', 'checking_by', 'approval_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'checking_status', 'approval_status', 'allocation_status']);
 
                 let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);

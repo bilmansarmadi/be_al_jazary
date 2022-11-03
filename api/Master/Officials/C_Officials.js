@@ -22,7 +22,7 @@ module.exports = {
                     Return  : 'Boolean'
                 };
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_created', 'date_modified']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['modified_by', 'date_created', 'date_modified', 'amount_range_from', 'amount_range_to', 'project_id', 'submission_permission', 'paid_status']);
 
                 let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
