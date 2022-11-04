@@ -39,8 +39,9 @@ class Submission_Form {
             submission_financing: {name: 'submission_financing', datatype: 'decimal', length: 10, isNotNull: false, defaultvalue: null, value: null},
             transaction_type: {name: 'transaction_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             amount: {name: 'amount', datatype: 'varchar', length: 100, isNotNull: true, defaultvalue: null, value: null},
-            payment_status: {name: 'payment_status', datatype: 'decimal', length: 50.0, isNotNull: true, defaultvalue: null, value: null},
+            payment_status: {name: 'payment_status', datatype: 'varchar', length: '100', isNotNull: true, defaultvalue: '', value: null},
             money_status: {name: 'money_status', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
+            submission_status: {name: 'submission_status', datatype: 'varchar', length: 15, isNotNull: false, defaultvalue: '', value: null},
             checking_by: {name: 'checking_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
             approval_by: {name: 'approval_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
             created_by: {name: 'created_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
@@ -95,6 +96,7 @@ class Submission_Form {
         this.#tableColumn.tableColumn.amount.value = middleware.Decrypt(value.body.amount);
         this.#tableColumn.tableColumn.payment_status.value = middleware.Decrypt(value.body.payment_status);
         this.#tableColumn.tableColumn.money_status.value = middleware.Decrypt(value.body.money_status);
+        this.#tableColumn.tableColumn.submission_status.value = middleware.Decrypt(value.body.submission_status);
         this.#tableColumn.tableColumn.checking_by.value = middleware.Decrypt(value.body.checking_by);
         this.#tableColumn.tableColumn.approval_by.value = middleware.Decrypt(value.body.approval_by);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);
