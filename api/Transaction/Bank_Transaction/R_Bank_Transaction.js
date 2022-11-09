@@ -14,6 +14,7 @@ module.exports = {
         if (Data.Route === 'DEFAULT') {
             var Config = Setup.Load_Config();
             var Url_Img = Config.Url_Img + '/bank-transaction/';
+            var Url_Img_Evidence_Of_Transfer = Config.Url_Img + '/evidence-of-transfer/';
 
             var Arr = {
                 'Data': [
@@ -68,10 +69,15 @@ module.exports = {
                     bank_transaction.payment_accepted,
                     bank_transaction.amount,
                     CASE 
-                        WHEN bank_transaction.path_image != '' THEN
-                            CONCAT('`+ Url_Img +`', bank_transaction.path_image) 
+                        WHEN bank_transaction.path_image_transaction_type != '' THEN
+                            CONCAT('`+ Url_Img +`', bank_transaction.path_image_transaction_type) 
                         ELSE ''
-                    END AS path_image,
+                    END AS path_image_transaction_type,
+                    CASE 
+                        WHEN bank_transaction.path_image_evidence_of_transfer != '' THEN
+                            CONCAT('`+ Url_Img_Evidence_Of_Transfer +`', bank_transaction.path_image_evidence_of_transfer) 
+                        ELSE ''
+                    END AS path_image_evidence_of_transfer,
                     bank_transaction.approval_by,
                     bank_transaction.created_by,
                     bank_transaction.modified_by,
@@ -87,6 +93,7 @@ module.exports = {
                     bank_transaction.status_escrow_accepted,
                     bank_transaction.approval_status,
                     bank_transaction.post_status,
+                    bank_transaction.upload_status,
                     bank_transaction.status,
                     workgroup.workgroup_name,
                     project.project_name,
@@ -107,6 +114,7 @@ module.exports = {
         } else if (Data.Route === 'ESCROW_PAYMENT_ACCEPTED') {
             var Config = Setup.Load_Config();
             var Url_Img = Config.Url_Img + '/bank-transaction/';
+            var Url_Img_Evidence_Of_Transfer = Config.Url_Img + '/evidence-of-transfer/';
 
             var Arr = {
                 'Data': [
@@ -173,10 +181,15 @@ module.exports = {
                     bank_transaction.payment_accepted,
                     bank_transaction.amount,
                     CASE 
-                        WHEN bank_transaction.path_image != '' THEN
-                            CONCAT('`+ Url_Img +`', bank_transaction.path_image) 
+                        WHEN bank_transaction.path_image_transaction_type != '' THEN
+                            CONCAT('`+ Url_Img +`', bank_transaction.path_image_transaction_type) 
                         ELSE ''
-                    END AS path_image,
+                    END AS path_image_transaction_type,
+                    CASE 
+                        WHEN bank_transaction.path_image_evidence_of_transfer != '' THEN
+                            CONCAT('`+ Url_Img_Evidence_Of_Transfer +`', bank_transaction.path_image_evidence_of_transfer) 
+                        ELSE ''
+                    END AS path_image_evidence_of_transfer,
                     bank_transaction.approval_by,
                     bank_transaction.created_by,
                     bank_transaction.modified_by,
@@ -192,6 +205,7 @@ module.exports = {
                     bank_transaction.status_escrow_accepted,
                     bank_transaction.approval_status,
                     bank_transaction.post_status,
+                    bank_transaction.upload_status,
                     bank_transaction.status,
                     workgroup.workgroup_name,
                     project.project_name,
@@ -212,6 +226,7 @@ module.exports = {
         } else if (Data.Route === 'LAST_TRANSFER') {
             var Config = Setup.Load_Config();
             var Url_Img = Config.Url_Img + '/bank-transaction/';
+            var Url_Img_Evidence_Of_Transfer = Config.Url_Img + '/evidence-of-transfer/';
 
             var Arr = {
                 'Data': [
@@ -266,10 +281,15 @@ module.exports = {
                     bank_transaction.payment_accepted,
                     bank_transaction.amount,
                     CASE 
-                        WHEN bank_transaction.path_image != '' THEN
-                            CONCAT('`+ Url_Img +`', bank_transaction.path_image) 
+                        WHEN bank_transaction.path_image_transaction_type != '' THEN
+                            CONCAT('`+ Url_Img +`', bank_transaction.path_image_transaction_type) 
                         ELSE ''
-                    END AS path_image,
+                    END AS path_image_transaction_type,
+                    CASE 
+                        WHEN bank_transaction.path_image_evidence_of_transfer != '' THEN
+                            CONCAT('`+ Url_Img_Evidence_Of_Transfer +`', bank_transaction.path_image_evidence_of_transfer) 
+                        ELSE ''
+                    END AS path_image_evidence_of_transfer,
                     bank_transaction.approval_by,
                     bank_transaction.created_by,
                     bank_transaction.modified_by,
@@ -285,6 +305,7 @@ module.exports = {
                     bank_transaction.status_escrow_accepted,
                     bank_transaction.approval_status,
                     bank_transaction.post_status,
+                    bank_transaction.upload_status,
                     bank_transaction.status
                 FROM
                     bank_transaction

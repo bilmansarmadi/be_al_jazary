@@ -1,20 +1,33 @@
-var express         = require('express');
-var middleware      = require('nox');
-var multer  	    = require('multer')
-var mimeType	    = require('mime-types');
-var router          = express.Router();
+var express     = require('express');
+var middleware  = require('nox');
+var multer      = require('multer');
+var mimeType    = require('mime-types');
+var router      = express.Router();
 
-var ext 			= '';
-var uniqueSuffix 	= '';
+var ext 			                = '';
+var extEvidenceOfTransfer           = '';
+var uniqueSuffix 	                = '';
+var uniqueSuffixEvidenceOfTransfer  = '';
 
 var storage = multer.diskStorage({
 	filename: (req, file, cb) => {
-		ext = mimeType.extension(file.mimetype)
-	  	uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-	 	cb(null, uniqueSuffix +"."+ext)
+		if (req.body.destination == 'evidence-of-transfer') {
+            extEvidenceOfTransfer = mimeType.extension(file.mimetype)
+            uniqueSuffixEvidenceOfTransfer = Date.now() + '-' + Math.round(Math.random() * 1E9)
+            cb(null, uniqueSuffixEvidenceOfTransfer +"."+extEvidenceOfTransfer)
+        } else {
+            ext = mimeType.extension(file.mimetype)
+            uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+            cb(null, uniqueSuffix +"."+ext)
+        }
 	},
+
 	destination: (req, file, cb) => {
-	  	cb(null, 'public/images/bank-transaction')
+        if (req.body.destination == 'evidence-of-transfer') {
+            cb(null, 'public/images/evidence-of-transfer')
+        } else {
+            cb(null, 'public/images/bank-transaction')
+        }
 	}
 })
 
@@ -63,7 +76,8 @@ class Bank_Transaction {
             transaction_type: {name: 'transaction_type', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             payment_accepted: {name: 'payment_accepted', datatype: 'varchar', length: 5, isNotNull: false, defaultvalue: '', value: null},
             amount: {name: 'amount', datatype: 'decimal', length: 18.2, isNotNull: true, defaultvalue: null, value: null},
-			path_image: {name: 'path_image', datatype: 'varchar', length: 1000, isNotNull: true, defaultvalue: '', value: null},
+			path_image_transaction_type: {name: 'path_image_transaction_type', datatype: 'varchar', length: 1000, isNotNull: false, defaultvalue: '', value: null},
+            path_image_evidence_of_transfer: {name: 'path_image_evidence_of_transfer', datatype: 'varchar', length: 1000, isNotNull: false, defaultvalue: '', value: null},
             approval_by: {name: 'approval_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
             created_by: {name: 'created_by', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: '', value: null},
             modified_by: {name: 'modified_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
@@ -79,6 +93,7 @@ class Bank_Transaction {
             status_escrow_accepted: {name: 'status_escrow_accepted',datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             approval_status: {name: 'approval_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
             post_status: {name: 'post_status', datatype: 'tinyint', length: 0, isNotNull: false, defaultvalue: 0, value: null},
+            upload_status: {name: 'upload_status', datatype: 'tinyint', length: 0, isNotNull: false, defaultvalue: 0, value: null},
             status: {name: 'status', datatype: 'tinyint', length: 0, isNotNull: false, defaultvalue: 1, value: null}
         }
     }
@@ -121,7 +136,8 @@ class Bank_Transaction {
         this.#tableColumn.tableColumn.transaction_type.value = middleware.Decrypt(value.body.transaction_type);
         this.#tableColumn.tableColumn.payment_accepted.value = middleware.Decrypt(value.body.payment_accepted);
         this.#tableColumn.tableColumn.amount.value = middleware.Decrypt(value.body.amount);
-        this.#tableColumn.tableColumn.path_image.value = (middleware.Decrypt(value.body.path_image) != '') ? middleware.Decrypt(value.body.path_image.substr(51)) : uniqueSuffix+"."+ext;
+        this.#tableColumn.tableColumn.path_image_transaction_type.value = (middleware.Decrypt(value.body.path_image_transaction_type) != '') ? middleware.Decrypt(value.body.path_image_transaction_type.substr(51)) : uniqueSuffix+"."+ext;
+        this.#tableColumn.tableColumn.path_image_evidence_of_transfer.value = (middleware.Decrypt(value.body.path_image_evidence_of_transfer) != '') ? middleware.Decrypt(value.body.path_image_evidence_of_transfer.substr(51)) : uniqueSuffixEvidenceOfTransfer+"."+extEvidenceOfTransfer;
         this.#tableColumn.tableColumn.approval_by.value = middleware.Decrypt(value.body.approval_by);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);
         this.#tableColumn.tableColumn.modified_by.value = middleware.Decrypt(value.body.modified_by);
@@ -137,11 +153,12 @@ class Bank_Transaction {
         this.#tableColumn.tableColumn.status_escrow_accepted.value = middleware.Decrypt(value.body.status_escrow_accepted);
         this.#tableColumn.tableColumn.approval_status.value = middleware.Decrypt(value.body.approval_status);
         this.#tableColumn.tableColumn.post_status.value = middleware.Decrypt(value.body.post_status);
+        this.#tableColumn.tableColumn.upload_status.value = middleware.Decrypt(value.body.upload_status);
         this.#tableColumn.tableColumn.status.value = middleware.Decrypt(value.body.status);
     }
 }
 
-router.post('/', upload.single('path_image'), function (req, res) {
+router.post('/', upload.fields([{ name: 'path_image_transaction_type', maxCount: 1 }, { name: 'path_image_evidence_of_transfer', maxCount: 1 }]), function (req, res) {
     let Init = new Bank_Transaction();
     Init.SetBankTransaction = req;
 

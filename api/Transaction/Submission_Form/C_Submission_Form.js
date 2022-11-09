@@ -36,7 +36,7 @@ module.exports = {
                         Clause  : "date_submission = '"+Data.tableColumn.date_submission.value+"' AND workgroup_id = '"+Data.tableColumn.workgroup_id.value+"' AND date_submission = '"+Data.tableColumn.date_submission.value+"' GROUP BY date_submission, workgroup_id",
                         Return  : 'Data'
                     };
-                } else if (Data.tableColumn.submission_permission.value === 'O') {
+                } else if (Data.tableColumn.submission_permission.value === 'OI' || Data.tableColumn.submission_permission.value === 'OE') {
                     var ValidationArr = {
                         Table   : Data.TableName,
                         Field   : `CONCAT('OPS', '-', workgroup_id, '-', DATE_FORMAT(date_submission, '%y'), DATE_FORMAT(date_submission, '%m'), '-', LPAD(COUNT(submission_number)+1, 4, '0')) AS ID`,
@@ -45,7 +45,7 @@ module.exports = {
                     };
                 }
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['money_status', 'submission_status', 'checking_by', 'approval_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'checking_status', 'approval_status', 'allocation_status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['money_status', 'submission_status', 'checking_by', 'approval_by', 'posted_by', 'modified_by', 'date_posted', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'upload_status', 'post_status', 'checking_status', 'approval_status', 'allocation_status']);
 
                 let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
@@ -71,7 +71,7 @@ module.exports = {
                             var formatPermission = 'ADM';
                         } else if (Data.tableColumn.submission_permission.value === 'SOS') {
                             var formatPermission = 'SOS';
-                        } else if (Data.tableColumn.submission_permission.value === 'O') {
+                        } else if (Data.tableColumn.submission_permission.value === 'OI' || Data.tableColumn.submission_permission.value === 'OE') {
                             var formatPermission = 'OPS';
                         }
 

@@ -23,7 +23,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'checking_by', 'approval_by', 'created_by', 'date_checking', 'date_approval', 'date_created', 'checking_status', 'approval_status', 'allocation_status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'checking_by', 'approval_by', 'posted_by', 'created_by', 'date_posted', 'date_checking', 'date_approval', 'date_created', 'upload_status', 'post_status', 'checking_status', 'approval_status', 'allocation_status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -56,7 +56,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'payment_status', 'money_status', 'submission_status', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'workgroup_partner_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'payment_status', 'money_status', 'submission_status', 'path_image_project', 'path_image_bank_guarantee', 'checking_by', 'approval_by', 'posted_by', 'created_by', 'modified_by', 'date_submission', 'date_posted', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'upload_status', 'post_status', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -89,7 +89,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'approval_by', 'created_by', 'modified_by', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'workgroup_partner_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'path_image_project', 'path_image_bank_guarantee', 'approval_by', 'posted_by', 'created_by', 'modified_by', 'date_posted', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'upload_status', 'post_status', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -122,7 +122,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'checking_by', 'created_by', 'modified_by', 'date_checking', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'allocation_status', 'status_cashing', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'workgroup_partner_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'path_image_project', 'path_image_bank_guarantee', 'checking_by', 'posted_by', 'created_by', 'modified_by', 'date_posted', 'date_posted', 'date_checking', 'date_created', 'date_modified', 'date_published', 'date_end', 'upload_status', 'post_status', 'checking_status', 'allocation_status', 'status_cashing', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -155,7 +155,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'status_cashing', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'workgroup_partner_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'date_submission', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'path_image_project', 'path_image_bank_guarantee', 'checking_by', 'approval_by', 'posted_by', 'created_by', 'modified_by', 'date_posted', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'upload_status', 'post_status', 'checking_status', 'approval_status', 'status_cashing', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -188,7 +188,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'allocation_status', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'workgroup_partner_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'path_image_project', 'path_image_bank_guarantee', 'checking_by', 'approval_by', 'posted_by', 'created_by', 'modified_by', 'date_submission', 'date_posted', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'upload_status', 'post_status', 'checking_status', 'approval_status', 'allocation_status', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -221,7 +221,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'submission_status', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'workgroup_partner_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'submission_status', 'path_image_project', 'path_image_bank_guarantee','checking_by', 'approval_by', 'posted_by', 'created_by', 'modified_by', 'date_submission', 'date_posted', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'upload_status', 'post_status', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -241,7 +241,7 @@ module.exports = {
                 _Data.Status = 3005;
                 middleware.Response(res, _Data);
             }
-        }  else if (Data.Route === 'SUBMISSION_STATUS') {
+        } else if (Data.Route === 'SUBMISSION_STATUS') {
             if (DataValidation(Data)) {
                 var Arr = {
                     'Data': [{
@@ -254,7 +254,73 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'workgroup_partner_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'checking_by', 'approval_by', 'posted_by', 'created_by', 'modified_by', 'date_submission', 'date_posted', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'upload_status', 'post_status', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
+                let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
+
+                db.Transaction(
+                    `UPDATE `
+                        + Data.TableName
+                        + columnValueString +`
+                    WHERE
+                        1=1 ` + Param
+                ).then((feedback) => {
+                    if (feedback.Status === 1000) {
+                        middleware.Response(res, feedback);
+                    } else {
+                        middleware.Response(res, feedback);
+                    }
+                });
+            } else {
+                _Data.Status = 3005;
+                middleware.Response(res, _Data);
+            }
+        } else if (Data.Route === 'UPLOAD_BANK_GUARANTEE') {
+            if (DataValidation(Data)) {
+                var Arr = {
+                    'Data': [{
+                        'Table' : Data.TableName,
+                        'Field' : 'submission_number',
+                        'Value' : Data.tableColumn.submission_number.value,
+                        'Syntax': '='
+                    }]
+                };
+
+                var Param = middleware.AdvSqlParamGenerator(Arr);
+
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'workgroup_partner_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'path_image_project', 'checking_by', 'approval_by', 'posted_by', 'created_by', 'modified_by', 'date_submission', 'date_posted', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'post_status', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
+                let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
+
+                db.Transaction(
+                    `UPDATE `
+                        + Data.TableName
+                        + columnValueString +`
+                    WHERE
+                        1=1 ` + Param
+                ).then((feedback) => {
+                    if (feedback.Status === 1000) {
+                        middleware.Response(res, feedback);
+                    } else {
+                        middleware.Response(res, feedback);
+                    }
+                });
+            } else {
+                _Data.Status = 3005;
+                middleware.Response(res, _Data);
+            }
+        } else if (Data.Route === 'POSTED') {
+            if (DataValidation(Data)) {
+                var Arr = {
+                    'Data': [{
+                        'Table' : Data.TableName,
+                        'Field' : 'submission_number',
+                        'Value' : Data.tableColumn.submission_number.value,
+                        'Syntax': '='
+                    }]
+                };
+
+                var Param = middleware.AdvSqlParamGenerator(Arr);
+
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['submission_number', 'workgroup_id', 'workgroup_partner_id', 'organizational_unit_id', 'work_unit_id', 'project_id', 'bank_code', 'account_number', 'guarantee_id', 'submission_desc', 'submission_type', 'submission_permission', 'submission_financing', 'transaction_type', 'amount', 'payment_status', 'money_status', 'submission_status', 'path_image_project', 'path_image_bank_guarantee', 'checking_by', 'approval_by', 'created_by', 'modified_by', 'date_submission', 'date_checking', 'date_approval', 'date_created', 'date_modified', 'date_published', 'date_end', 'upload_status', 'checking_status', 'approval_status', 'allocation_status', 'status_cashing', 'status']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -347,6 +413,22 @@ function DataValidation(Data) {
         var ColumnArr = [
             'submission_number',
             'submission_status'
+        ];
+
+        Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
+    } else if (Data.Route === 'UPLOAD_BANK_GUARANTEE') {
+        var ColumnArr = [
+            'submission_number',
+            'path_image_bank_guarantee'
+        ];
+
+        Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
+    } else if (Data.Route === 'POSTED') {
+        var ColumnArr = [
+            'submission_number',
+            'posted_by',
+            'date_posted',
+            'post_status'
         ];
 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
