@@ -44,6 +44,7 @@ class Bank_Guarantee {
 			date_created: {name: 'date_created', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: 'CURRENT_TIMESTAMP', value: null},
 			date_modified: {name: 'date_modified', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
 			status_cashing: {name: 'status_cashing', datatype: 'int', length: 0, isNotNull: false, defaultvalue: 0, value: null},
+			upload_status: {name: 'upload_status', datatype: 'tinyint', length: 1, isNotNull: false, defaultvalue: 0, value: null},
 			status: {name: 'status', datatype: 'int', length: 0, isNotNull: true, defaultvalue: 1, value: null},
 
 			guarantee_id_old: {name: 'guarantee_id_old', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null}
@@ -88,6 +89,7 @@ class Bank_Guarantee {
 		this.#tableColumn.tableColumn.date_created.value = middleware.Decrypt(value.body.date_created);
 		this.#tableColumn.tableColumn.date_modified.value = middleware.Decrypt(value.body.date_modified);
 		this.#tableColumn.tableColumn.status_cashing.value = middleware.Decrypt(value.body.status_cashing);
+		this.#tableColumn.tableColumn.upload_status.value = middleware.Decrypt(value.body.upload_status);
 		this.#tableColumn.tableColumn.status.value = middleware.Decrypt(value.body.status);
 
 		this.#tableColumn.tableColumn.guarantee_id_old.value = middleware.Decrypt(value.body.guarantee_id_old);

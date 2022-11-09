@@ -23,7 +23,7 @@ module.exports = {
 			
 			    var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['created_by', 'date_created']);                
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['created_by', 'date_created', 'upload_status']);                
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 				
 				db.Transaction(
@@ -56,7 +56,40 @@ module.exports = {
 			
 			    var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['guarantee_id_old', 'guarantee_id_old', 'workgroup_id', 'project_id', 'bank_code', 'account_number', 'guarantee_address', 'guarantee_permission', 'guarantee_type', 'guarantee_date', 'total_amount', 'date_published', 'date_end', 'created_by', 'modified_by', 'date_created', 'date_modified', 'status']);                
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['guarantee_id', 'guarantee_id_old', 'workgroup_id', 'project_id', 'bank_code', 'account_number', 'guarantee_address', 'guarantee_permission', 'guarantee_type', 'guarantee_date', 'total_amount', 'date_published', 'date_end', 'created_by', 'modified_by', 'date_created', 'date_modified', 'upload_status', 'status']);                
+                let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
+				
+				db.Transaction(
+                    `UPDATE ` 
+                        + Data.TableName
+                        + columnValueString +`
+                    WHERE 
+						1=1 ` + Param
+                ).then((feedback) => {
+                    if (feedback.Status === 1000) {
+                        middleware.Response(res, feedback);
+                    } else {
+                        middleware.Response(res, feedback);
+                    }
+                });
+			} else {
+                _Data.Status = 3005;		
+                middleware.Response(res, _Data);
+            }
+		} else if (Data.Route === 'UPLOAD_STATUS') {
+			if (DataValidation(Data)) {
+				var Arr = {
+                    'Data': [{
+                        'Table' : Data.TableName,
+                        'Field' : 'guarantee_id',
+                        'Value' : Data.tableColumn.guarantee_id.value,
+                        'Syntax': '='
+                    }]                
+                }; 
+			
+			    var Param = middleware.AdvSqlParamGenerator(Arr);
+
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['guarantee_id', 'guarantee_id_old', 'workgroup_id', 'project_id', 'bank_code', 'account_number', 'guarantee_address', 'guarantee_permission', 'guarantee_type', 'guarantee_intended', 'guarantee_date', 'total_amount', 'total_paid', 'total_received', 'date_published', 'date_end', 'created_by', 'modified_by', 'date_created', 'date_modified', 'status_cashing', 'status']);                
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 				
 				db.Transaction(
@@ -108,6 +141,13 @@ function DataValidation(Data) {
         var ColumnArr = [
             'guarantee_id',
             'status_cashing'
+        ];
+                
+        Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
+    } else if (Data.Route === 'UPLOAD_STATUS') {
+        var ColumnArr = [
+            'guarantee_id',
+            'upload_status'
         ];
                 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
