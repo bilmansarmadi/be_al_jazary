@@ -22,7 +22,7 @@ module.exports = {
                     Return  : 'Data'
                 };
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['payment_accepted', 'approval_by', 'modified_by', 'posted_by', 'date_approval', 'date_created', 'date_modified', 'date_posted', 'date_receipt', 'status_receipt', 'status_escrow_accepted', 'approval_status', 'post_status', 'upload_status']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['payment_accepted', 'approval_by', 'modified_by', 'posted_by', 'date_approval', 'date_created', 'date_modified', 'date_posted', 'date_receipt', 'status_receipt', 'status_escrow_accepted', 'approval_status', 'post_status']);
 
                 let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
