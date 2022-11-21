@@ -23,7 +23,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['cashbank_id', 'created_by', 'date_created', 'guarantee_id', 'post_status', 'daily_monthly']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['cashbank_id', 'submission_number', 'created_by', 'date_created', 'guarantee_id', 'post_status', 'daily_monthly']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -56,7 +56,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['cashbank_id', 'period_code', 'cashbank_desc', 'cashbank_date', 'cashbank_type', 'created_by', 'modified_by', 'posted_by', 'date_created', 'date_modified', 'date_posted', 'status', 'cashbank_detail']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['cashbank_id', 'submission_number', 'period_code', 'cashbank_desc', 'cashbank_date', 'cashbank_type', 'created_by', 'modified_by', 'posted_by', 'date_created', 'date_modified', 'date_posted', 'status', 'cashbank_detail']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(
@@ -89,7 +89,7 @@ module.exports = {
 
                 var Param = middleware.AdvSqlParamGenerator(Arr);
 
-                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['cashbank_id', 'no_voucher', 'workgroup_id', 'project_id', 'guarantee_id', 'bank_code', 'account_number', 'period_code', 'cashbank_desc', 'cashbank_date', 'cashbank_type', 'cashbank_permission', 'transaction_type', 'cashbank_line', 'reference', 'amount', 'created_by', 'modified_by', 'date_created', 'date_modified', 'status', 'daily_monthly']);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['cashbank_id', 'no_voucher', 'workgroup_id', 'project_id', 'guarantee_id', 'bank_code', 'account_number', 'submission_number', 'period_code', 'cashbank_desc', 'cashbank_date', 'cashbank_type', 'cashbank_permission', 'transaction_type', 'cashbank_line', 'reference', 'amount', 'created_by', 'modified_by', 'date_created', 'date_modified', 'status', 'daily_monthly']);
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 
                 db.Transaction(

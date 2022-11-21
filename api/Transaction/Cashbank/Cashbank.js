@@ -32,6 +32,7 @@ class Cashbank {
             guarantee_id: {name: 'guarantee_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             bank_code: {name: 'bank_code', datatype: 'varchar', length: 10, isNotNull: false, defaultvalue: null, value: null},
             account_number: {name: 'account_number', datatype: 'varchar', length: 50, isNotNull: true, defaultvalue: null, value: null},
+            submission_number: {name: 'submission_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             period_code: {name: 'period_code', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: '', value: null},
             cashbank_desc: {name: 'cashbank_desc', datatype: 'varchar', length: 50, isNotNull: false, defaultvalue: '', value: null},
             cashbank_date: {name: 'cashbank_date', datatype: 'datetime', length: 0, isNotNull: true, defaultvalue: 'CURRENT_TIMESTAMP', value: null},
@@ -81,6 +82,7 @@ class Cashbank {
         this.#tableColumn.tableColumn.guarantee_id.value = middleware.Decrypt(value.body.guarantee_id);
         this.#tableColumn.tableColumn.bank_code.value = middleware.Decrypt(value.body.bank_code);
         this.#tableColumn.tableColumn.account_number.value = middleware.Decrypt(value.body.account_number);
+        this.#tableColumn.tableColumn.submission_number.value = middleware.Decrypt(value.body.submission_number);
         this.#tableColumn.tableColumn.period_code.value = middleware.Decrypt(value.body.period_code);
         this.#tableColumn.tableColumn.cashbank_desc.value = middleware.Decrypt(value.body.cashbank_desc);
         this.#tableColumn.tableColumn.cashbank_date.value = middleware.Decrypt(value.body.cashbank_date);

@@ -76,6 +76,72 @@ module.exports = {
                 _Data.Status = 3005;		
                 middleware.Response(res, _Data);
             }
+		} else if (Data.Route === 'STATUS_CHECKING') {
+			if (DataValidation(Data)) {
+				var Arr = {
+                    'Data': [{
+                        'Table' : Data.TableName,
+                        'Field' : 'submission_number',
+                        'Value' : Data.tableColumn.submission_number.value,
+                        'Syntax': '='
+                    }]                
+                }; 
+			
+			    var Param = middleware.AdvSqlParamGenerator(Arr);
+
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['official_id', 'submission_number', 'organizational_unit_id', 'work_unit_id', 'position_id', 'position_name', 'official_name', 'official_rank', 'amount_submission', 'amount_checking', 'amount_approval', 'paid_status', 'created_by', 'modified_by', 'date_created', 'date_modified', 'status_submission', 'status_approval', 'status', 'amount_range_from', 'amount_range_to', 'project_id', 'submission_permission']);                
+                let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
+				
+				db.Transaction(
+                    `UPDATE ` 
+                        + Data.TableName
+                        + columnValueString +`
+                    WHERE 
+						1=1 ` + Param
+                ).then((feedback) => {
+                    if (feedback.Status === 1000) {
+                        middleware.Response(res, feedback);
+                    } else {
+                        middleware.Response(res, feedback);
+                    }
+                });
+			} else {
+                _Data.Status = 3005;		
+                middleware.Response(res, _Data);
+            }
+		} else if (Data.Route === 'STATUS_APPROVAL') {
+			if (DataValidation(Data)) {
+				var Arr = {
+                    'Data': [{
+                        'Table' : Data.TableName,
+                        'Field' : 'submission_number',
+                        'Value' : Data.tableColumn.submission_number.value,
+                        'Syntax': '='
+                    }]                
+                }; 
+			
+			    var Param = middleware.AdvSqlParamGenerator(Arr);
+
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['official_id', 'submission_number', 'organizational_unit_id', 'work_unit_id', 'position_id', 'position_name', 'official_name', 'official_rank', 'amount_submission', 'amount_checking', 'amount_approval', 'paid_status', 'created_by', 'modified_by', 'date_created', 'date_modified', 'status_submission', 'status_checking', 'status', 'amount_range_from', 'amount_range_to', 'project_id', 'submission_permission']);                
+                let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
+				
+				db.Transaction(
+                    `UPDATE ` 
+                        + Data.TableName
+                        + columnValueString +`
+                    WHERE 
+						1=1 ` + Param
+                ).then((feedback) => {
+                    if (feedback.Status === 1000) {
+                        middleware.Response(res, feedback);
+                    } else {
+                        middleware.Response(res, feedback);
+                    }
+                });
+			} else {
+                _Data.Status = 3005;		
+                middleware.Response(res, _Data);
+            }
 		} else {
             _Data.Status = 3003;		
             middleware.Response(res, _Data);
@@ -96,8 +162,21 @@ function DataValidation(Data) {
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
     } else if (Data.Route === 'PAID_STATUS') {
         var ColumnArr = [
-            'official_id',
             'paid_status'
+        ];
+                
+        Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
+    } else if (Data.Route === 'STATUS_CHECKING') {
+        var ColumnArr = [
+            'submission_number',
+            'status_checking'
+        ];
+                
+        Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
+    } else if (Data.Route === 'STATUS_APPROVAL') {
+        var ColumnArr = [
+            'submission_number',
+            'status_approval'
         ];
                 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);

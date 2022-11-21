@@ -179,11 +179,11 @@ module.exports = {
                     submission_form.money_status,
                     submission_form.submission_status,
                     CASE
-                        WHEN submission_form.path_image_project != '' THEN CONCAT('`+ Url_Img +`', submission_form.path_image_project)
+                        WHEN submission_form.path_image_project != '.' THEN CONCAT('`+ Url_Img +`', submission_form.path_image_project)
                         ELSE ''
                     END AS path_image_project,
                     CASE
-                        WHEN submission_form.path_image_bank_guarantee != '' THEN CONCAT('`+ Url_Img_BG +`', submission_form.path_image_bank_guarantee)
+                        WHEN submission_form.path_image_bank_guarantee != '.' THEN CONCAT('`+ Url_Img_BG +`', submission_form.path_image_bank_guarantee)
                         ELSE ''
                     END AS path_image_bank_guarantee,
                     submission_form.checking_by,

@@ -51,11 +51,14 @@ module.exports = {
             db.Read(
                 `SELECT
 					officials.*,
-                    positions.position_name
+                    positions.position_name,
+                    submission_form.money_status
 				FROM
 					officials
                 INNER JOIN
                     positions ON positions.position_id = officials.position_id
+                INNER JOIN
+                    submission_form ON submission_form.submission_number = officials.submission_number
 				WHERE
 					1=1 ` + Param
             ).then((feedback) => {
@@ -182,7 +185,7 @@ module.exports = {
                 LEFT JOIN
                     positions ON positions.position_id = officials.position_id
                 WHERE
-                    officials.amount_approval BETWEEN ` + Data.tableColumn.amount_range_from.value + ` AND ` + Data.tableColumn.amount_range_to.value + Param
+                    project.project_amount BETWEEN ` + Data.tableColumn.amount_range_from.value + ` AND ` + Data.tableColumn.amount_range_to.value + Param
             ).then((feedback) => {
                 middleware.Response(res, feedback);
             });
