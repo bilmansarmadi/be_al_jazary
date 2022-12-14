@@ -27,6 +27,7 @@ class Work_Units {
         tableColumn: {
             work_unit_id: {name: 'work_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             organizational_unit_id: {name: 'organizational_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+            sub_organizational_unit: {name: 'sub_organizational_unit', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             work_unit_name: {name: 'work_unit_name', datatype: 'varchar', length: 50, isNotNull: true, defaultvalue: '', value: null},
             work_unit_group: {name: 'work_unit_group', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: '', value: null},
             created_by: {name: 'created_by', datatype: 'varchar', length: 15, isNotNull: true, defaultvalue: null, value: null},
@@ -58,6 +59,7 @@ class Work_Units {
 
         this.#tableColumn.tableColumn.work_unit_id.value = middleware.Decrypt(value.body.work_unit_id);
         this.#tableColumn.tableColumn.organizational_unit_id.value = middleware.Decrypt(value.body.organizational_unit_id);
+        this.#tableColumn.tableColumn.sub_organizational_unit.value = middleware.Decrypt(value.body.sub_organizational_unit);
         this.#tableColumn.tableColumn.work_unit_name.value = middleware.Decrypt(value.body.work_unit_name);
         this.#tableColumn.tableColumn.work_unit_group.value = middleware.Decrypt(value.body.work_unit_group);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);

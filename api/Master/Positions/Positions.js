@@ -27,8 +27,10 @@ class Positions {
         tableColumn: {
             position_id: {name: 'position_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             organizational_unit_id: {name: 'organizational_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+            sub_organizational_unit: {name: 'sub_organizational_unit', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             work_unit_id: {name: 'work_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             position_name: {name: 'position_name', datatype: 'varchar', length: 50, isNotNull: true, defaultvalue: '', value: null},
+            official_name: {name: 'official_name', datatype: 'varchar', length: 255, isNotNull: true, defaultvalue: '', value: null},
             created_by: {name: 'created_by', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: '', value: null},
             modified_by: {name: 'modified_by', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: '', value: null},
 			date_created: {name: 'date_created', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: 'CURRENT_TIMESTAMP', value: null},
@@ -58,8 +60,10 @@ class Positions {
 
         this.#tableColumn.tableColumn.position_id.value = middleware.Decrypt(value.body.position_id);
         this.#tableColumn.tableColumn.organizational_unit_id.value = middleware.Decrypt(value.body.organizational_unit_id);
+        this.#tableColumn.tableColumn.sub_organizational_unit.value = middleware.Decrypt(value.body.sub_organizational_unit);
         this.#tableColumn.tableColumn.work_unit_id.value = middleware.Decrypt(value.body.work_unit_id);
         this.#tableColumn.tableColumn.position_name.value = middleware.Decrypt(value.body.position_name);
+        this.#tableColumn.tableColumn.official_name.value = middleware.Decrypt(value.body.official_name);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);
         this.#tableColumn.tableColumn.modified_by.value = middleware.Decrypt(value.body.modified_by);
         this.#tableColumn.tableColumn.date_created.value = middleware.Decrypt(value.body.date_created);

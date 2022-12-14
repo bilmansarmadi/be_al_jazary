@@ -25,7 +25,8 @@ class Officials {
 
     #tableColumn = {
         tableColumn: {
-            official_id: {name: 'official_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+            // official_id: {name: 'official_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+            official_id: {name: 'official_id', datatype: 'int', length: 0, isNotNull: true, defaultvalue: null, value: null},
             submission_number: {name: 'submission_number', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             organizational_unit_id: {name: 'organizational_unit_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             work_unit_id: {name: 'work_unit_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},

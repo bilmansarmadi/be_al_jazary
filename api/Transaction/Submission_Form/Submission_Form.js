@@ -60,8 +60,11 @@ class Submission_Form {
             workgroup_id: {name: 'workgroup_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             workgroup_partner_id: {name: 'workgroup_partner_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             organizational_unit_id: {name: 'organizational_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+            sub_organizational_unit: {name: 'sub_organizational_unit', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             work_unit_id: {name: 'work_unit_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+            position_id: {name: 'position_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
             project_id: {name: 'project_id', datatype: 'varchar', length: 20, isNotNull: true, defaultvalue: null, value: null},
+            activity_id: {name: 'activity_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
             bank_code: {name: 'bank_code', datatype: 'varchar', length: 10, isNotNull: false, defaultvalue: null, value: null},
             account_number: {name: 'account_number', datatype: 'varchar', length: 50, isNotNull: false, defaultvalue: null, value: null},
             guarantee_id: {name: 'guarantee_id', datatype: 'varchar', length: 20, isNotNull: false, defaultvalue: null, value: null},
@@ -122,8 +125,11 @@ class Submission_Form {
         this.#tableColumn.tableColumn.workgroup_id.value = middleware.Decrypt(value.body.workgroup_id);
         this.#tableColumn.tableColumn.workgroup_partner_id.value = middleware.Decrypt(value.body.workgroup_partner_id);
         this.#tableColumn.tableColumn.organizational_unit_id.value = middleware.Decrypt(value.body.organizational_unit_id);
+        this.#tableColumn.tableColumn.sub_organizational_unit.value = middleware.Decrypt(value.body.sub_organizational_unit);
         this.#tableColumn.tableColumn.work_unit_id.value = middleware.Decrypt(value.body.work_unit_id);
+        this.#tableColumn.tableColumn.position_id.value = middleware.Decrypt(value.body.position_id);
         this.#tableColumn.tableColumn.project_id.value = middleware.Decrypt(value.body.project_id);
+        this.#tableColumn.tableColumn.activity_id.value = middleware.Decrypt(value.body.activity_id);
         this.#tableColumn.tableColumn.bank_code.value = middleware.Decrypt(value.body.bank_code);
         this.#tableColumn.tableColumn.account_number.value = middleware.Decrypt(value.body.account_number);
         this.#tableColumn.tableColumn.guarantee_id.value = middleware.Decrypt(value.body.guarantee_id);

@@ -53,8 +53,11 @@ module.exports = {
                     submission_form.workgroup_id,
                     submission_form.workgroup_partner_id,
                     submission_form.organizational_unit_id,
+                    submission_form.sub_organizational_unit,
                     submission_form.work_unit_id,
+                    submission_form.position_id,
                     submission_form.project_id,
+                    submission_form.activity_id,
                     submission_form.bank_code,
                     submission_form.account_number,
                     submission_form.guarantee_id,
@@ -100,6 +103,7 @@ module.exports = {
                     organizational_units.organizational_unit_name,
                     work_units.work_unit_name,
                     project.project_name,
+                    activities.activity_name,
                     bank.bank_name,
                     submission_form.date_end <= NOW() + INTERVAL 10 DAY AS show_notification
                 FROM
@@ -115,7 +119,11 @@ module.exports = {
                 INNER JOIN
                     project ON project.project_id = submission_form.project_id
                 LEFT JOIN
+                    positions ON positions.position_id = submission_form.position_id
+                LEFT JOIN
                     bank ON bank.bank_code = submission_form.bank_code
+                LEFT JOIN
+                    activities ON activities.activity_id = submission_form.activity_id
                 WHERE
                     1=1 ` + Param
             ).then((feedback) => {
@@ -163,8 +171,11 @@ module.exports = {
                     submission_form.workgroup_id,
                     submission_form.workgroup_partner_id,
                     submission_form.organizational_unit_id,
+                    submission_form.sub_organizational_unit,
                     submission_form.work_unit_id,
+                    submission_form.position_id,
                     submission_form.project_id,
+                    submission_form.activity_id,
                     submission_form.bank_code,
                     submission_form.account_number,
                     submission_form.guarantee_id,
@@ -208,6 +219,7 @@ module.exports = {
                     workgroup.workgroup_name,
                     workgroup_partners.workgroup_name AS workgroup_partner_name,
                     project.project_name,
+                    activities.activity_name,
                     bank.bank_name,
                     submission_form.date_end <= NOW() + INTERVAL 10 DAY AS show_notification
                 FROM
@@ -219,7 +231,11 @@ module.exports = {
                 INNER JOIN
                     project ON project.project_id = submission_form.project_id
                 LEFT JOIN
+                    positions ON positions.position_id = submission_form.position_id
+                LEFT JOIN
                     bank ON bank.bank_code = submission_form.bank_code
+                LEFT JOIN
+                    activities ON activities.activity_id = submission_form.activity_id
                 WHERE
                     1=1 ` + Param
             ).then((feedback) => {
@@ -268,8 +284,11 @@ module.exports = {
                     submission_form.submission_number,
                     submission_form.workgroup_id,
                     submission_form.organizational_unit_id,
+                    submission_form.sub_organizational_unit,
                     submission_form.work_unit_id,
+                    submission_form.position_id,
                     submission_form.project_id,
+                    submission_form.activity_id,
                     submission_form.bank_code,
                     submission_form.account_number,
                     submission_form.guarantee_id,
@@ -300,6 +319,7 @@ module.exports = {
                     submission_form.status,
                     workgroup.workgroup_name,
                     project.project_name,
+                    activities.activity_name,
                     bank.bank_name,
                     submission_form.date_end <= NOW() + INTERVAL 10 DAY AS show_notification
                 FROM
@@ -309,7 +329,11 @@ module.exports = {
                 INNER JOIN
                     project ON project.project_id = submission_form.project_id
                 LEFT JOIN
+                    positions ON positions.position_id = submission_form.position_id
+                LEFT JOIN
                     bank ON bank.bank_code = submission_form.bank_code
+                LEFT JOIN
+                    activities ON activities.activity_id = submission_form.activity_id
                 WHERE
                     1=1 AND submission_form.date_end <= NOW() + INTERVAL 10 DAY ` + Param
             ).then((feedback) => {

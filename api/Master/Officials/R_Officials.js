@@ -104,9 +104,30 @@ module.exports = {
 
             db.Read(
                 `SELECT
-					*
+					officials.official_id,
+                    officials.submission_number,
+                    officials.organizational_unit_id,
+                    officials.work_unit_id,
+                    officials.position_id,
+                    positions.position_name,
+                    officials.official_name,
+                    officials.official_rank,
+                    officials.amount_submission,
+                    officials.amount_checking,
+                    officials.amount_approval,
+                    officials.paid_status,
+                    officials.created_by,
+                    officials.modified_by,
+                    officials.date_created,
+                    officials.date_modified,
+                    officials.status_submission,
+                    officials.status_checking,
+                    officials.status_approval,
+                    officials.status
 				FROM
 					officials
+                INNER JOIN
+                    positions ON positions.position_id = officials.position_id
 				WHERE
 					1=1 ` + Param
             ).then((feedback) => {

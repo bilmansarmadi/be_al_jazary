@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter               = require('./routes/index');
 var accountingPeriodRouter    = require('./api/Master/Accounting_Period/Accounting_Period');
+var activitiesRouter          = require('./api/Master/Activities/Activities');
 var bankRouter                = require('./api/Master/Bank/Bank');
 var bankAccountRouter         = require('./api/Master/Bank_Account/Bank_Account');
 var chequeRouter              = require('./api/Master/Cheque/Cheque');
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/', indexRouter);
 
 app.use('/api/Master/AccountingPeriod', accountingPeriodRouter);
+app.use('/api/Master/Activities', activitiesRouter);
 app.use('/api/Master/Bank', bankRouter);
 app.use('/api/Master/BankAccount', bankAccountRouter);
 app.use('/api/Transaction/BankGuarantee', bankGuaranteeRouter);

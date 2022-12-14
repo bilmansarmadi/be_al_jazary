@@ -80,6 +80,10 @@ module.exports = {
 
                     columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
 
+                    let submissionNumber = Data.tableColumn.submission_number.value;
+
+                    module.exports.SubmissionNumber = submissionNumber;
+
                     return db.Transaction(
                         `INSERT INTO `
                             + Data.TableName + ` 

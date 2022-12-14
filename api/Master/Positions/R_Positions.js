@@ -58,6 +58,12 @@ module.exports = {
                         'Field' : 'work_unit_id',
                         'Value' : Data.tableColumn.work_unit_id.value,
                         'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'sub_organizational_unit',
+                        'Value' : Data.tableColumn.sub_organizational_unit.value,
+                        'Syntax': '='
                     }
                 ]
             };
@@ -66,7 +72,8 @@ module.exports = {
 
             db.Read(
                 `SELECT
-					*
+					*,
+                    CONCAT(position_name, ' (',official_name, ')') AS position_official_name
 				FROM
 					positions
 				WHERE
