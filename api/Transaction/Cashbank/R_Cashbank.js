@@ -209,6 +209,91 @@ module.exports = {
             ).then((feedback) => {
                 middleware.Response(res, feedback);
             });
+        } else if (Data.Route === 'TRANSACTION_REPORTS') {
+            var Arr = {
+                'Data': [
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'cashbank_id',
+                        'Value' : Data.tableColumn.cashbank_id.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'cashbank_type',
+                        'Value' : getCashbankType(Data.tableColumn.cashbank_type.value),
+                        'Syntax': 'IN'
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'cashbank_permission',
+                        'Value' : Data.tableColumn.cashbank_permission.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'transaction_type',
+                        'Value' : Data.tableColumn.transaction_type.value,
+                        'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'workgroup_id',
+                        'Value' : Data.tableColumn.workgroup_id.value,
+                        'Syntax': '='
+                    }
+                ]
+            };
+
+            var Param = middleware.AdvSqlParamGenerator(Arr);
+
+            db.Read(
+                `SELECT
+                    cashbank.cashbank_id,
+                    cashbank.no_voucher,
+                    cashbank.workgroup_id,
+                    cashbank.project_id,
+                    cashbank.guarantee_id,
+                    cashbank.period_code,
+                    cashbank.cashbank_desc,
+                    CONVERT(DATE_FORMAT(cashbank.cashbank_date, "%d-%m-%Y"), CHAR(20)) AS cashbank_date,
+                    cashbank.cashbank_type,
+                    cashbank.cashbank_permission,
+                    cashbank.transaction_type,
+                    cashbank.reference,
+                    cashbank.account_number,
+                    cashbank.submission_number,
+                    CASE
+                        WHEN cashbank.cashbank_type = 'KBM' THEN cashbank.amount
+                        WHEN cashbank.cashbank_type = 'KKM' THEN cashbank.amount
+                        ELSE 0
+                    END AS amount_debit,
+                    CASE
+                        WHEN cashbank.cashbank_type = 'KBK' then cashbank.amount
+                        WHEN cashbank.cashbank_type = 'KKK' THEN cashbank.amount
+                        ELSE 0
+                    END AS amount_credit,
+                    cashbank.created_by,
+                    cashbank.modified_by,
+                    cashbank.posted_by,
+                    CONVERT(DATE_FORMAT(cashbank.date_created, "%d-%m-%Y"), CHAR(20)) AS date_created,
+                    CONVERT(DATE_FORMAT(cashbank.date_modified, "%d-%m-%Y"), CHAR(20)) AS date_modified,
+                    CONVERT(DATE_FORMAT(cashbank.date_posted, "%d-%m-%Y"), CHAR(20)) AS date_posted,
+                    cashbank.post_status,
+                    cashbank.status,
+                    workgroup.workgroup_name,
+                    project.project_name
+                FROM
+                    cashbank
+                INNER JOIN
+                    workgroup ON workgroup.workgroup_id = cashbank.workgroup_id
+                INNER JOIN
+                    project ON project.project_id = cashbank.project_id
+                WHERE
+                    1=1 AND cashbank.cashbank_date BETWEEN ` + "'"+ Data.tableColumn.date_from.value +"'" + ` AND ` + "'"+ Data.tableColumn.date_to.value +"'" + Param
+            ).then((feedback) => {
+                middleware.Response(res, feedback);
+            });
         } else {
             _Data.Status = 3003;
             middleware.Response(res, _Data);
@@ -221,6 +306,10 @@ module.exports = {
                 Value = "'TI', 'TE'";
             } else if (cashbank_type == 'K') {
                 Value = "'I', 'E'";
+            } else if (cashbank_type == 'KB') {
+                Value = "'KBM', 'KBK'";
+            } else if (cashbank_type == 'KK') {
+                Value = "'KKM', 'KKK'";
             }
 
             return Value;

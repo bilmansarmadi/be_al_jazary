@@ -52,6 +52,8 @@ class Cashbank {
             
             // cashbank_detail: {name: 'cashbank_detail', datatype: 'varchar', length: 225, isNotNull: true, value: null},
 
+            date_from: {name: 'date_from', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
+            date_to: {name: 'date_to', datatype: 'datetime', length: 0, isNotNull: false, defaultvalue: null, value: null},
             daily_monthly: {name: 'daily_monthly', datatype: 'varchar', length: 1, isNotNull: true, value: null}
         }
     }
@@ -102,6 +104,8 @@ class Cashbank {
         
         // this.#tableColumn.tableColumn.cashbank_detail.value = middleware.Decrypt(value.body.cashbank_detail);
 
+        this.#tableColumn.tableColumn.date_from.value = middleware.Decrypt(value.body.date_from);
+        this.#tableColumn.tableColumn.date_to.value = middleware.Decrypt(value.body.date_to);
         this.#tableColumn.tableColumn.daily_monthly.value = middleware.Decrypt(value.body.daily_monthly);
     }
 }

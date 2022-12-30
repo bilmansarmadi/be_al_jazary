@@ -49,6 +49,12 @@ module.exports = {
                         'Field' : 'sub_organizational_unit',
                         'Value' : Data.tableColumn.sub_organizational_unit.value,
                         'Syntax': '='
+                    },
+                    {
+                        'Table' : Data.TableName,
+                        'Field' : 'work_unit_group',
+                        'Value' : Data.tableColumn.work_unit_group.value,
+                        'Syntax': '='
                     }
                 ]
             };
