@@ -1,0 +1,15 @@
+pipelines:
+  branches:
+    'master':
+      - step:
+          name: Deploy to Test Server
+          deployment: production
+          script:
+            - echo "Deploying to test environment"
+            - pipe: atlassian/ssh-run:0.2.2
+              variables:
+                SSH_USER: '12308-379'
+                SERVER: 'gate.infra.dewacloud.com'
+                PORT: '3022'
+                SSH_KEY: $SERVER_SSHKEY
+                COMMAND: '/docker_emitra_be/pipeline.sh'    
