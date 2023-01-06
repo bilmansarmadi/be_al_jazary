@@ -12,4 +12,4 @@ pipelines:
                 SERVER: 'gate.infra.dewacloud.com'
                 PORT: '3022'
                 SSH_KEY: $DEWACLOUD_SSHKEY
-                COMMAND: '/docker_emitra/be/pipeline.sh'    
+                COMMAND: '~/docker_emitra/be/pipeline.sh'    
