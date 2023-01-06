@@ -136,8 +136,8 @@ class Bank_Transaction {
         this.#tableColumn.tableColumn.transaction_type.value = middleware.Decrypt(value.body.transaction_type);
         this.#tableColumn.tableColumn.payment_accepted.value = middleware.Decrypt(value.body.payment_accepted);
         this.#tableColumn.tableColumn.amount.value = middleware.Decrypt(value.body.amount);
-        this.#tableColumn.tableColumn.path_image_transaction_type.value = (middleware.Decrypt(value.body.path_image_transaction_type) != '') ? middleware.Decrypt(value.body.path_image_transaction_type.substr(51)) : uniqueSuffix+"."+ext;
-        this.#tableColumn.tableColumn.path_image_evidence_of_transfer.value = (middleware.Decrypt(value.body.path_image_evidence_of_transfer) != '') ? middleware.Decrypt(value.body.path_image_evidence_of_transfer.substr(55)) : uniqueSuffixEvidenceOfTransfer+"."+extEvidenceOfTransfer;
+        this.#tableColumn.tableColumn.path_image_transaction_type.value = (middleware.Decrypt(value.body.path_image_transaction_type) != '') ? middleware.Decrypt(value.body.path_image_transaction_type.substr(64)) : uniqueSuffix+"."+ext;
+        this.#tableColumn.tableColumn.path_image_evidence_of_transfer.value = (middleware.Decrypt(value.body.path_image_evidence_of_transfer) != '') ? middleware.Decrypt(value.body.path_image_evidence_of_transfer.substr(68)) : uniqueSuffixEvidenceOfTransfer+"."+extEvidenceOfTransfer;
         this.#tableColumn.tableColumn.approval_by.value = middleware.Decrypt(value.body.approval_by);
         this.#tableColumn.tableColumn.created_by.value = middleware.Decrypt(value.body.created_by);
         this.#tableColumn.tableColumn.modified_by.value = middleware.Decrypt(value.body.modified_by);

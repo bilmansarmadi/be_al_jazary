@@ -142,8 +142,8 @@ class Submission_Form {
         this.#tableColumn.tableColumn.payment_status.value = middleware.Decrypt(value.body.payment_status);
         this.#tableColumn.tableColumn.money_status.value = middleware.Decrypt(value.body.money_status);
         this.#tableColumn.tableColumn.submission_status.value = middleware.Decrypt(value.body.submission_status);
-        this.#tableColumn.tableColumn.path_image_project.value = (middleware.Decrypt(value.body.path_image_project) != '') ? middleware.Decrypt(value.body.path_image_project.substr(50)) : uniqueSuffix+"."+ext;
-        this.#tableColumn.tableColumn.path_image_bank_guarantee.value = (middleware.Decrypt(value.body.path_image_bank_guarantee) != '') ? middleware.Decrypt(value.body.path_image_bank_guarantee.substr(49)) : uniqueSuffixBankGuarantee+"."+extBankGuarantee;
+        this.#tableColumn.tableColumn.path_image_project.value = (middleware.Decrypt(value.body.path_image_project) != '') ? middleware.Decrypt(value.body.path_image_project.substr(63)) : uniqueSuffix+"."+ext;
+        this.#tableColumn.tableColumn.path_image_bank_guarantee.value = (middleware.Decrypt(value.body.path_image_bank_guarantee) != '') ? middleware.Decrypt(value.body.path_image_bank_guarantee.substr(62)) : uniqueSuffixBankGuarantee+"."+extBankGuarantee;
         this.#tableColumn.tableColumn.checking_by.value = middleware.Decrypt(value.body.checking_by);
         this.#tableColumn.tableColumn.approval_by.value = middleware.Decrypt(value.body.approval_by);
         this.#tableColumn.tableColumn.posted_by.value = middleware.Decrypt(value.body.posted_by);
