@@ -1,0 +1,1 @@
+{"Error":[{"date":"2022-06-08 11:39:1","code":"ER_EMPTY_QUERY","errno":1065,"sqlMessage":"Query was empty","sqlState":"42000","sql":""},{"date":"2022-06-08 11:39:15","code":"ER_EMPTY_QUERY","errno":1065,"sqlMessage":"Query was empty","sqlState":"42000","sql":""}]}

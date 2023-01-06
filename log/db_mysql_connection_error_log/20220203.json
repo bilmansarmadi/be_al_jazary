@@ -1,0 +1,1 @@
+{"Error":[{"date":"2022-02-03 15:14:38","code":"ECONNREFUSED","errno":-4078,"syscall":"connect","address":"::1","port":3306,"fatal":true},{"date":"2022-02-03 15:15:37","code":"ECONNREFUSED","errno":-4078,"syscall":"connect","address":"::1","port":3306,"fatal":true},{"date":"2022-02-03 15:15:56","code":"ER_BAD_DB_ERROR","errno":1049,"fatal":true}]}
