@@ -13,17 +13,15 @@ module.exports = {
 				var Arr 	= {
                     'Data': [{
                         'Table' : Data.TableName,
-                        'Field' : 'user_id',
-                        'Value' : Data.tableColumn.user_id.value,
+                        'Field' : 'role_id',
+                        'Value' : Data.tableColumn.role_id.value,
                         'Syntax': '='
                     }]                
                 }; 
 			
 			    var Param 	= middleware.AdvSqlParamGenerator(Arr); 
 
-                Data.tableColumn.user_password.value = md5(Data.tableColumn.user_password.value);
-
-                Data.tableColumn      = middleware.ExcludeTableColumn(Data.tableColumn, ['user_id']);                
+                Data.tableColumn      = middleware.ExcludeTableColumn(Data.tableColumn, ['role_id']);                
                 let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
 				
 				db.Transaction(
@@ -55,7 +53,7 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr 	= [
-            'user_id'
+            'role_id'
         ];
                 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);

@@ -1,6 +1,5 @@
 var middleware 	= require('nox');
 var db 	        = require('nox-db');
-var md5         = require('md5');
 
 var _Data = {
 	Status	: 1000
@@ -13,12 +12,12 @@ module.exports = {
 			if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : Data.TableName,
-                    Field   : 'user_id',
-                    Clause  : "user_id = '"+ Data.tableColumn.user_password.value +"'",
+                    Field   : 'rprivilege_id',
+                    Clause  : "rprivilege_id = '"+ Data.tableColumn.rprivilege_id.value +"'",
                     Return  : 'Boolean'
                 };
 
-                Data.tableColumn.user_password.value = md5(Data.tableColumn.user_password.value);
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['rprivilege_id']); 
 				let columnNameString    = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString   = middleware.PrepareInsertQuery(Data.tableColumn, true);
 
@@ -64,11 +63,8 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr 	= [
-            'role_id',
-            'user_fullname',
-            'user_email',
-            'user_password',
-            'status'
+            'menu_id',
+            'role_id'
         ];
                 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);        

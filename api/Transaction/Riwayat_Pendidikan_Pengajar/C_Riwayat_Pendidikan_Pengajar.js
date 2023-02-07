@@ -1,47 +1,51 @@
 var middleware 	= require('nox');
 var db 	        = require('nox-db');
-var md5         = require('md5');
+var ID          = require('nox-gen-id');
 
 var _Data = {
-	Status	: 1000
+	Status	: 1000,
+	Data	: [],
+	Error	: '',
+	Message	: ''
 };
 
 module.exports = {
 	Create:function(res, Data) {
 		if (Data.Route === 'DEFAULT') {
-
-			if (DataValidation(Data)) {
+            Data.tableColumn.r_pendidikan_pengajar_id.value = ID.Read_Id(Data.TableName);
+            if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : Data.TableName,
-                    Field   : 'user_id',
-                    Clause  : "user_id = '"+ Data.tableColumn.user_password.value +"'",
+                    Field   : 'r_pendidikan_pengajar_id',
+                    Clause  : "r_pendidikan_pengajar_id = '"+ Data.tableColumn.r_pendidikan_pengajar_id.value +"'",
                     Return  : 'Boolean'
                 };
+                Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['nama_lengkap','nip']); 
 
-                Data.tableColumn.user_password.value = md5(Data.tableColumn.user_password.value);
-				let columnNameString    = middleware.PrepareInsertQuery(Data.tableColumn, false);
-                let columnValueString   = middleware.PrepareInsertQuery(Data.tableColumn, true);
+				let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
+                let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
 
                 db.Validation(
                     ValidationArr
                 ).then((feedback) => {
                     if (feedback) {
                         return db.Transaction(
-                                    `INSERT INTO `
-                                        + Data.TableName + ` 
-                                    (`
-                                        + columnNameString +   
-                                    `) 
-                                    VALUES 
-                                    (`
-                                        + columnValueString +
-                                    `);`
+                            `INSERT INTO `
+                                + Data.TableName + ` 
+                            (`
+                                + columnNameString +   
+                            `) 
+                            VALUES 
+                            (`
+                                + columnValueString +
+                            `);`
                         );
                     } else {
                         return false;
                     }
                 }).then((feedback) => {
                     if (feedback !== false) {
+                        ID.Write_Id(Data.TableName);
                         middleware.Response(res, feedback);
                     } else {
                         _Data.Status = 3006;
@@ -53,7 +57,7 @@ module.exports = {
                 middleware.Response(res, _Data);
             }
 		} else {
-            _Data.Status	= 3003;
+            _Data.Status = 3003;
             middleware.Response(res, _Data);
         }
 	}
@@ -63,12 +67,13 @@ function DataValidation(Data) {
     var Result = true;
 
     if (Data.Route === 'DEFAULT') {
-        var ColumnArr 	= [
-            'role_id',
-            'user_fullname',
-            'user_email',
-            'user_password',
-            'status'
+        var ColumnArr = [
+            'tahun_masuk',
+            'tahun_lulus',
+            'nama_sekolah',
+            'tingkat',
+            'pengajar_id',
+            'status_sekolah'
         ];
                 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);        

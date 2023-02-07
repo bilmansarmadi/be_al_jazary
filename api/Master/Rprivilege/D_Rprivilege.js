@@ -1,35 +1,28 @@
 var middleware 	= require('nox');
 var db 	        = require('nox-db');
-var md5         = require('md5');
 
 var _Data = {
 	Status	: 1000
 };
 
 module.exports = {
-	Update:function(res, Data) {
+	Discard:function(res, Data) {
 		if (Data.Route === 'DEFAULT') {
 			if (DataValidation(Data)) {
 				var Arr 	= {
-                    'Data': [{
-                        'Table' : Data.TableName,
-                        'Field' : 'user_id',
-                        'Value' : Data.tableColumn.user_id.value,
-                        'Syntax': '='
-                    }]                
-                }; 
+					'Data': [{
+						'Table' : Data.TableName,
+						'Field' : 'rprivilege_id',
+						'Value' : Data.tableColumn.rprivilege_id.value,
+						'Syntax': '='
+					}]                
+				}; 
 			
-			    var Param 	= middleware.AdvSqlParamGenerator(Arr); 
-
-                Data.tableColumn.user_password.value = md5(Data.tableColumn.user_password.value);
-
-                Data.tableColumn      = middleware.ExcludeTableColumn(Data.tableColumn, ['user_id']);                
-                let columnValueString = middleware.PrepareUpdateQuery(Data.tableColumn);
+				var Param 	= middleware.AdvSqlParamGenerator(Arr);                 
 				
 				db.Transaction(
-                    `UPDATE ` 
-                        + Data.TableName
-                        + columnValueString +`
+                    `DELETE FROM `
+                        + Data.TableName +`
                     WHERE 
 						1=1 ` + Param
                 ).then((feedback) => {
@@ -55,7 +48,7 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr 	= [
-            'user_id'
+            'rprivilege_id'
         ];
                 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);
