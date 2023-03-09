@@ -2,9 +2,7 @@
   "name": "api",
   "version": "0.0.0",
   "private": true,
-  "engines": {
-    "node": "14.x"  
-  },
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
