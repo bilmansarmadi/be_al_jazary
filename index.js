@@ -1,7 +1,7 @@
 import express from 'express'
 const app = express();
 
-app.get('/api',app);
+app.get('/app',app);
 
 app.listen(5000, ()=> {
 console.log('app is running')
