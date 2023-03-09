@@ -12,14 +12,14 @@ var _Data = {
 module.exports = {
 	Create:function(res, Data) {
 		if (Data.Route === 'DEFAULT') {
+            Data.tableColumn.kurikulum_id.value = ID.Read_Id(Data.TableName);
             if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : Data.TableName,
-                    Field   : 'mapel_id',
-                    Clause  : "mapel_id = '"+ Data.tableColumn.mapel_id.value +"'",
+                    Field   : 'kurikulum_id',
+                    Clause  : "kurikulum_id = '"+ Data.tableColumn.kurikulum_id.value +"'",
                     Return  : 'Boolean'
                 }; 
-				Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['mapel_id']); 
 
 				let columnNameString = middleware.PrepareInsertQuery(Data.tableColumn, false);
                 let columnValueString = middleware.PrepareInsertQuery(Data.tableColumn, true);
@@ -44,6 +44,7 @@ module.exports = {
                     }
                 }).then((feedback) => {
                     if (feedback !== false) {
+                        ID.Write_Id(Data.TableName);
                         middleware.Response(res, feedback);
                     } else {
                         _Data.Status = 3006;
@@ -66,9 +67,8 @@ function DataValidation(Data) {
 
     if (Data.Route === 'DEFAULT') {
         var ColumnArr = [
-            'mapel_nama',
-            'status_mapel',
-            'kategori_id'
+            'kurikulum_nama',
+            'kurikulum_status'
         ];
                 
         Result = middleware.DataValidation(Data.tableColumn, ColumnArr);        

@@ -16,6 +16,8 @@ var roleUserRouter            = require('./api/Master/Role_User/Role_User');
 var menuRouter                = require('./api/Master/Menu/Menu');
 var pengajarRouter            = require('./api/Master/Pengajar/Pengajar');
 var mapelRouter               = require('./api/Master/Mapel/Mapel');
+var kurikulumRouter            = require('./api/Master/Kurikulum/Kurikulum');
+var kategoriRouter            = require('./api/Master/Kategori/Kategori');
 var tahunajaranRouter         = require('./api/Master/Tahun_Ajaran/Tahun_Ajaran');
 var gradenilaiRouter          = require('./api/Master/Grade_Nilai/Grade_Nilai');
 var kelasRouter               = require('./api/Master/Kelas/Kelas');
@@ -53,6 +55,9 @@ app.use('/api/Master/Mapel', mapelRouter);
 app.use('/api/Master/GradeNilai', gradenilaiRouter);
 app.use('/api/Master/Pengajaran', pengajaranRouter);
 app.use('/api/Master/Privilege', rprivilegeRouter);
+app.use('/api/Master/Kurikulum', kurikulumRouter);
+app.use('/api/Master/Kategori', kategoriRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

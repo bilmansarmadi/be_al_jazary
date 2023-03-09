@@ -38,6 +38,13 @@ module.exports = {
 		} else if (Data.Route === 'Read_Santri') {
 			var Config = Setup.Load_Config();
             var Url_Img = Config.Url_Img + '/';
+
+			if(Data.tableColumn.nama_lengkap_santri.value != ''){
+				var value = "%"+Data.tableColumn.nama_lengkap_santri.value+"%";
+				}else{
+				var value = Data.tableColumn.nama_lengkap_santri.value;
+			}
+
 			var Arr = {
 				'Data': [{
 					'Table' : Data.TableName,
@@ -48,7 +55,7 @@ module.exports = {
 				{
 					'Table' : Data.TableName,
 					'Field' : 'nama_lengkap_santri',
-					'Value' :  Data.tableColumn.nama_lengkap_santri.value,
+					'Value' :  value,
 					'Syntax': 'LIKE'
 				}]               
 			}; 

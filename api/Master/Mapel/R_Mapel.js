@@ -51,8 +51,8 @@ module.exports = {
 				},
 				{
 					'Table' : Data.TableName,
-					'Field' : 'kategori',
-					'Value' : Data.tableColumn.kategori.value,
+					'Field' : 'kategori_id',
+					'Value' : Data.tableColumn.kategori_id.value,
 					'Syntax': '='
 				},
 				{
@@ -82,6 +82,8 @@ module.exports = {
 					*
 				FROM
 					m_mapel
+					inner join
+					m_kategori_kurikulum on m_kategori_kurikulum.kategori_id = m_mapel.kategori_id
 				WHERE
 					1=1` + Param
 			).then((feedback) => {

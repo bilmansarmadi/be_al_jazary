@@ -9,12 +9,38 @@ var _Data = {
 module.exports = {
 	Read:function(res, Data ) {
 		if (Data.Route === 'DEFAULT') {
+
+
+			if(Data.tableColumn.user_fullname.value != ''){
+				var value = "%"+Data.tableColumn.user_fullname.value+"%";
+				}else{
+				var value = Data.tableColumn.user_fullname.value;
+			}
+
+			if(Data.tableColumn.user_email.value != ''){
+				var email = "%"+Data.tableColumn.user_email.value+"%";
+				}else{
+				var email = Data.tableColumn.user_email.value;
+			}
+
 			var Arr 	= {
 				'Data': [{
 					'Table' : Data.TableName,
 					'Field' : 'user_id',
 					'Value' : Data.tableColumn.user_id.value,
 					'Syntax': '='
+				},
+				{
+					'Table' : Data.TableName,
+					'Field' : 'user_fullname',
+					'Value' : value,
+					'Syntax': 'LIKE'
+				},
+				{
+					'Table' : Data.TableName,
+					'Field' : 'user_email',
+					'Value' : email,
+					'Syntax': 'LIKE'
 				}]                
 			}; 
 			

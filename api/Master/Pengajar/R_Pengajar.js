@@ -38,6 +38,13 @@ module.exports = {
 		} else if (Data.Route === 'Read_Pengajar') {
 			var Config = Setup.Load_Config();
             var Url_Img = Config.Url_Img + '/';
+			
+			if(Data.tableColumn.nama_lengkap.value != ''){
+				var value = "%"+Data.tableColumn.nama_lengkap.value+"%";
+				}else{
+				var value = Data.tableColumn.nama_lengkap.value;
+			}
+
 			var Arr = {
 				'Data': [{
 					'Table' : Data.TableName,
@@ -48,7 +55,7 @@ module.exports = {
 				{
 					'Table' : Data.TableName,
 					'Field' : 'nama_lengkap',
-					'Value' :  Data.tableColumn.nama_lengkap.value,
+					'Value' :  value,
 					'Syntax': 'LIKE'
 				}]                 
 			}; 
@@ -68,6 +75,7 @@ module.exports = {
 				email,
 				hafalan_mutqin,
 				status_nikah,
+				CASE WHEN jenis_kelamin = 'L' THEN 'Ikhwan' ELSE 'Akhwat' END jenis_kelamin,
 				CASE
 				WHEN foto != '.' THEN CONCAT('`+ Url_Img +`', foto)
 				ELSE ''

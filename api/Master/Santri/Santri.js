@@ -92,8 +92,9 @@ class Santri {
 		this.#tableColumn.tableColumn.kode_santri.value = middleware.Decrypt(value.body.kode_santri);
 		this.#tableColumn.tableColumn.nama_lengkap_santri.value = middleware.Decrypt(value.body.nama_lengkap_santri);
 		this.#tableColumn.tableColumn.panggilan.value = middleware.Decrypt(value.body.panggilan);
-        this.#tableColumn.tableColumn.tanggal_lahir.value = middleware.Decrypt(value.body.tanggal_lahir);
         this.#tableColumn.tableColumn.tempat_lahir.value = middleware.Decrypt(value.body.tempat_lahir);
+		var date = middleware.Decrypt(value.body.tanggal_lahir);
+		this.#tableColumn.tableColumn.tanggal_lahir.value = date.split("-").reverse().join("-");
         this.#tableColumn.tableColumn.anak_ke.value = middleware.Decrypt(value.body.anak_ke);
         this.#tableColumn.tableColumn.alamat.value = middleware.Decrypt(value.body.alamat);
 		this.#tableColumn.tableColumn.berat_badan.value = middleware.Decrypt(value.body.berat_badan);

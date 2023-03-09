@@ -15,8 +15,8 @@ module.exports = {
             if (DataValidation(Data)) {
                 var ValidationArr = {
                     Table   : 'm_pengajaran',
-                    Field   : 'hari',
-                    Clause  : "hari = '"+ Data.tableColumn.hari.value +"'",
+                    Field   : 'jadwal_id',
+                    Clause  : "jadwal_id = '"+ Data.tableColumn.jadwal_id.value +"'",
                     Return  : 'Boolean'
                 };
 				Data.tableColumn = middleware.ExcludeTableColumn(Data.tableColumn, ['jadwal_id','nama_kelas','nip','mapel_nama','kode_mapel','nama_lengkap','nama_kelas']); 
