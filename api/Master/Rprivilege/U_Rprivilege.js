@@ -1,4 +1,4 @@
-var middleware 	= require('nox');
+var middleware = require('../../assets/nox');
 var db 	        = require('nox-db');
 
 var _Data = {
