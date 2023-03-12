@@ -1,5 +1,5 @@
 var fs = require('fs');
-var middleware = require('../../assets/nox');
+var middleware 	= require('nox');;
 
 module.exports = {
 	Write_Error: function(DB, Error_Type ,Data){

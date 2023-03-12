@@ -1,4 +1,4 @@
-var middleware  = require('nox');
+var middleware 	= require('nox');
 var db          = require('nox-db');
 var Setup       = require('nox-config');
 

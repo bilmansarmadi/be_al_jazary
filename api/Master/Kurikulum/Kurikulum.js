@@ -1,5 +1,5 @@
 var express     = require('express');
-var middleware  = require('nox');
+var middleware 	= require('nox');
 var multer      = require('multer');
 var mimeType    = require('mime-types');
 var router      = express.Router();

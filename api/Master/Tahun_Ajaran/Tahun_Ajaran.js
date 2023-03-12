@@ -1,5 +1,5 @@
 var express 	= require('express');
-var middleware = require('../../assets/nox');
+var middleware 	= require('nox');;
 var router 		= express.Router();
 
 var create 		= require('./C_Tahun_Ajaran.js');
