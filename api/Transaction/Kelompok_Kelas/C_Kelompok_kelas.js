@@ -1,4 +1,4 @@
-var middleware 	= require('../../../assets/nox');;
+var middleware 	= require('../../../assets/nox');
 var db 	        = require('../../../assets/nox-db');
 var ID          = require('../../../assets/nox-gen-id');
 
