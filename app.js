@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter               = require('./routes/index');
 var absensiRouter             = require('./api/Transaction/Absensi/Absensi');
-// var kelompokkelasRouter       = require('./api/Transaction/Kelompok_Kelas/Kelompok_Kelas');
+var kelompokkelasRouter       = require('./api/Transaction/KelompokKelas/Kelompok_Kelas');
 var rpendidikanRouter         = require('./api/Transaction/Riwayat_Pendidikan_Santri/Riwayat_Pendidikan_Santri');
 var rdikpengajarRouter        = require('./api/Transaction/Riwayat_Pendidikan_Pengajar/Riwayat_Pendidikan_Pengajar');
 var rmengajarRouter           = require('./api/Transaction/Riwayat_Mengajar/Riwayat_Mengajar');
