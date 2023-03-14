@@ -4,10 +4,10 @@ var multer      = require('../../../assets/multer');
 var mimeType    = require('../../../assets/mime-types');
 var router      = express.Router();
 
-var create 		= require('./C_Kelompok_kelas.js');
+var create 		= require('./C_Kelompok_Kelas.js');
 var read 		= require('./R_Kelompok_Kelas.js');
 var update 		= require('./U_Kelompok_Kelas.js');
-var discard 	= require('./D_Kelompok_kelas.js');
+var discard 	= require('./D_Kelompok_Kelas.js');
 
 const Program = 'K_Kelas';
 
