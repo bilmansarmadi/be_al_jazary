@@ -1,6 +1,6 @@
-var Setup = require('../nox-config');
-var mysql = require('../mysql');
-var mylog = require('../nox-log');
+var Setup = require('../../assets/nox-config');
+var mysql = require('../../assets/nox-config');
+var mylog = require('../../assets/nox-config');
 
 var db = '';
 

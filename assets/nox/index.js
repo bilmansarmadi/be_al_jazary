@@ -1,5 +1,5 @@
-var Setup 	= require('../nox-config');
-var status 	= require('../nox-status');
+var Setup 	= require('../../assets/nox-config');
+var status 	= require('../../assets/nox-config');
 
 let Config = Setup.Load_Config();
 
