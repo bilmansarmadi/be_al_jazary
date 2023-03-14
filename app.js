@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter               = require('./routes/index');
 var absensiRouter             = require('./api/Transaction/Absensi/Absensi');
-var kelompokRouter       = require('./api/Transaction/Kelompok_Kelas/Kelompok');
+// var kelompokkelasRouter       = require('./api/Transaction/Kelompok_Kelas/Kelompok_Kelas');
 var rpendidikanRouter         = require('./api/Transaction/Riwayat_Pendidikan_Santri/Riwayat_Pendidikan_Santri');
 var rdikpengajarRouter        = require('./api/Transaction/Riwayat_Pendidikan_Pengajar/Riwayat_Pendidikan_Pengajar');
 var rmengajarRouter           = require('./api/Transaction/Riwayat_Mengajar/Riwayat_Mengajar');
@@ -43,7 +43,7 @@ app.use('/api/Riwayat/Riwayat_Pendidikan_Santri', rpendidikanRouter);
 app.use('/api/Riwayat/Riwayat_Pendidikan_Pengajar', rdikpengajarRouter);
 app.use('/api/Riwayat/Riwayat_Nilai', riwayatnilaiRouter);
 app.use('/api/Riwayat/Riwayat_Mengajar', rmengajarRouter);
-app.use('/api/Riwayat/Kelompok_Kelas', kelompokRouter);
+// app.use('/api/Riwayat/Kelompok_Kelas', kelompokkelasRouter);
 app.use('/api/Master/Users', usersRouter);
 app.use('/api/Master/RoleUser', roleUserRouter);
 app.use('/api/Master/TahunAjaran', tahunajaranRouter);
