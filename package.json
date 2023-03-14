@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "assets": "^3.0.1",
     "body-parser": "^1.19.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
@@ -18,10 +19,7 @@
     "md5": "^2.3.0",
     "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",
-    "mysql": "^2.18.1"
-  },
-  "main": "app.js",
-  "author": "",
-  "license": "ISC",
-  "description": ""
+    "mysql": "^2.18.1",
+    "nox": "^0.1.1"
+  }
 }

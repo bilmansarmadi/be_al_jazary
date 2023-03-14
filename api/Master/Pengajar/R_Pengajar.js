@@ -1,6 +1,6 @@
-var middleware 	= require('nox');
-var db          = require('nox-db');
-var Setup       = require('nox-config');
+var express     = require('../../../assets/express');
+var middleware 	= require('../../../assets/nox');
+var Setup       = require('../../../assets/nox-config');
 
 var _Data = {
 	Status	: 1000,

@@ -1,7 +1,7 @@
-var express     = require('express');
-var middleware 	= require('nox');
-var multer      = require('multer');
-var mimeType    = require('mime-types');
+var express     = require('../../../assets/express');
+var middleware 	= require('../../../assets/nox');
+var multer      = require('../../../assets/multer');
+var mimeType    = require('../../../assets/mime-types');
 var router      = express.Router();
 
 var create 		= require('./C_Riwayat_Mengajar.js');

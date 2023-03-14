@@ -1,5 +1,5 @@
-var express 	= require('express');
-var middleware 	= require('nox');;
+var express     = require('../../../assets/express');
+var middleware 	= require('../../../assets/nox');
 var router 		= express.Router();
 
 var create 		= require('./C_Pengajaran.js');

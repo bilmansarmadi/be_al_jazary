@@ -1,4 +1,4 @@
-var Setup 	= require('nox-config');
+var Setup 	= require('../nox-config');
 
 let Config  = Setup.Load_Config();
 

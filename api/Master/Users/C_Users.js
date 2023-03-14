@@ -1,6 +1,6 @@
-var middleware 	= require('nox');;
-var db 	        = require('nox-db');
-var md5         = require('md5');
+var middleware 	= require('../../../assets/nox');
+var db 	        = require('../../../assets/nox-db');
+var md5         = require('../../../assets/md5');
 
 var _Data = {
 	Status	: 1000

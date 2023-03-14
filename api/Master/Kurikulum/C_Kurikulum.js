@@ -1,6 +1,6 @@
-var middleware 	= require('nox');;
-var db 	        = require('nox-db');
-var ID          = require('nox-gen-id');
+var middleware 	= require('../../../assets/nox');
+var db 	        = require('../../../assets/nox-db');
+var ID          = require('../../../assets/nox-gen-id');
 
 var _Data = {
 	Status	: 1000,
